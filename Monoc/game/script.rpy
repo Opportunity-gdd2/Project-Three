@@ -5,6 +5,27 @@
 
 define e = Character("Eileen")
 
+define s = Character("Sigrun")
+
+define o = Character("Odin")
+
+define po = Character("Pope")
+
+define ev = Character("Evil Vampire")
+
+define nv = Character("Vampire")
+
+define m = Character("Mab")
+
+define hm = Character("Hugin and Munin")
+
+define a = Character("The Archive")
+
+define fa = Character("Fairy")
+
+define d = character("Ferrovax")
+
+define pl = Character("[player_name]")
 
 # The game starts here.
 
@@ -24,9 +45,11 @@ label start:
 
     # These display lines of dialogue.
 
-    e "You've created a new Ren'Py game."
+    $ player_name = renpy.input("Okay, all that's left is for you to sign at the bottom")
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+    $ player_name = player_name.strip() or "Barnaby"
+
+    pl "Hey it's me, [player_name]"
 
     # This ends the game.
 
