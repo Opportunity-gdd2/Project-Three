@@ -23,7 +23,7 @@ define a = Character("The Archive")
 
 define fa = Character("Fairy")
 
-define d = character("Ferrovax")
+define d = Character("Ferrovax")
 
 define pl = Character("[player_name]")
 
