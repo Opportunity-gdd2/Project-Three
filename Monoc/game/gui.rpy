@@ -52,6 +52,9 @@ define gui.text_color = '#ffffff'
 define gui.interface_text_color = '#ffffff'
 
 
+## The information for the mouse
+define config.mouse = {}
+define config.mouse['default'] = [ ("gui/arrow.png", 16,16)]
 ## Fonts and Font Sizes ########################################################
 
 ## The font used for in-game text.
