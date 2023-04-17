@@ -1,0 +1,38 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 26, in script
+    define d = character("Ferrovax")
+  File "game/script.rpy", line 26, in script
+    define d = character("Ferrovax")
+  File "game/script.rpy", line 26, in <module>
+    define d = character("Ferrovax")
+NameError: name 'character' is not defined
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "/usr/share/renpy/renpy/bootstrap.py", line 277, in bootstrap
+    renpy.main.main()
+  File "/usr/share/renpy/renpy/main.py", line 558, in main
+    renpy.game.context().run(node)
+  File "game/script.rpy", line 26, in script
+    define d = character("Ferrovax")
+  File "/usr/lib/python3.10/site-packages/future/utils/__init__.py", line 441, in raise_
+    raise exc
+  File "game/script.rpy", line 26, in script
+    define d = character("Ferrovax")
+  File "/usr/share/renpy/renpy/ast.py", line 2441, in execute
+    self.set()
+  File "/usr/share/renpy/renpy/ast.py", line 2455, in set
+    value = renpy.python.py_eval_bytecode(self.code.bytecode)
+  File "/usr/share/renpy/renpy/python.py", line 1085, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+  File "game/script.rpy", line 26, in <module>
+    define d = character("Ferrovax")
+NameError: name 'character' is not defined
+
+Linux-6.2.9-arch1-1-x86_64-with-glibc2.37 x86_64
+Ren'Py 8.0.3.0
+Monoc 1.0
+Thu Apr 13 13:44:26 2023
