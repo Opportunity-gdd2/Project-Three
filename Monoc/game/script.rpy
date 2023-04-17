@@ -53,4 +53,13 @@ label start:
 
     # This ends the game.
 
+    menu test:
+        "Testing input"
+
+        "Test A":
+            "I pressed Test A"
+        "Test B":
+            "I pressed Test B"
+
+    label after_menu:
     return
