@@ -31,6 +31,9 @@ define pl = Character("[player_name]")
 
 label start:
 
+    # Start Background Music As The Game Starts
+    play music "audio/BGM_Generic.mp3" fadein 2.0
+
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
