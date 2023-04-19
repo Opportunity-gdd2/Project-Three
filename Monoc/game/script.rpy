@@ -27,6 +27,25 @@ define d = Character("Ferrovax")
 
 define pl = Character("[player_name]")
 
+
+# Variables declared here
+# measure of how much evidence/suspicion the player has for the pope
+$ pope_score = 0
+# default bomb evidence to false
+$ bomb_found = False
+# do you have evidence to acquit the vampires?
+$ vamp_evidence = False
+# who have you met?
+$ met_pope = False
+$ met_ev = False
+$ met_nv = False
+$ met_m = False
+$ met_hm = False
+$ met_a = False
+$ met_fa = False
+$ met_d = False
+
+
 # The game starts here.
 
 label start:
@@ -214,5 +233,76 @@ label start:
     s "Once we get there we’ll need to be careful and vigilant.  Keep your eyes open for any suspicious behavior, and remember, those accords must be signed.  No matter what."
 
     label after_menu:
+
+
+
+
+
+    # DAY TWO
+    label day_two:
+    scene day_two with fadein
+    scene hotelroom with fadein
+
+    if bomb_found:
+        jump: invest_bomb
+
+    "The morning sun streams in through the flimsy hotel windows, waking me up long before I'd like to be."
+    pl "Well...up and at'em I guess."
+    "I take my time getting up and into uniform before heading out the door, and go to meet Odin and crew at his room."
+
+    "*KNOCK KNOCK*"
+
+    "???" "Fuck off!"
+
+    pl "Sir? I'm here to escort you when you're ready."
+
+    show odin annoyed
+
+    o "I'm busy! Leave me alone!"
+
+    hide odin annoyed
+
+    "He slams the door in my face."
+
+    pl "I guess I'll just wait here..."
+
+    show sigrun neutral
+    
+    "After a few minutes, Sigrun joins me, but seems to already know not to knock."
+
+    "We wait in silence."
+
+    label invest_bomb:
+
+    "I've barely slept at all and haven't been able to figure out at all what to expect."
+
+    show sigrun worried at left
+    show odin annoyed at right
+
+    "I've already let the other's know that something is going on, but without much progress."
+
+    s "And you're sure?"
+
+
+
+    label bomb_goes_off:
+
+    label bomb_not_off:
+
+
+
+    label meet_everyone:
+
+
+    label snoop_time:
+
+
+    label vamp_evidence:
+
+    label evening:
+
+
+
+    label day_three:
     return
     # This ends the game.
