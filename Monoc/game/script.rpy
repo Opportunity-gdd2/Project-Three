@@ -30,20 +30,20 @@ define pl = Character("[player_name]")
 
 # Variables declared here
 # measure of how much evidence/suspicion the player has for the pope
-$ pope_score = 0
+default pope_score = 0
 # default bomb evidence to false
-$ bomb_found = False
+default bomb_found = False
 # do you have evidence to acquit the vampires?
-$ vamp_evidence = False
+default vamp_evidence = False
 # who have you met?
-$ met_pope = False
-$ met_ev = False
-$ met_nv = False
-$ met_m = False
-$ met_hm = False
-$ met_a = False
-$ met_fa = False
-$ met_d = False
+default met_pope = False
+default et_ev = False
+default met_nv = False
+default met_m = False
+default met_hm = False
+default met_a = False
+default met_fa = False
+default met_d = False
 
 
 # The game starts here.
@@ -240,11 +240,11 @@ label start:
 
     # DAY TWO
     label day_two:
-    scene day_two with fadein
-    scene hotelroom with fadein
+    scene day_two with fade
+    scene hotelroom with fade
 
     if bomb_found:
-        jump: invest_bomb
+        jump invest_bomb
 
     "The morning sun streams in through the flimsy hotel windows, waking me up long before I'd like to be."
     pl "Well...up and at'em I guess."
@@ -271,6 +271,8 @@ label start:
     "After a few minutes, Sigrun joins me, but seems to already know not to knock."
 
     "We wait in silence."
+
+    jump bomb_goes_off
 
     label invest_bomb:
 
