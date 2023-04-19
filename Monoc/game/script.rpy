@@ -1,5 +1,6 @@
 ﻿# The script of the game goes in this file.
 
+$ import shake
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
@@ -271,6 +272,30 @@ label start:
     "After a few minutes, Sigrun joins me, but seems to already know not to knock."
 
     "We wait in silence."
+    "..."
+    "..."
+    show odin annoyed
+
+    "It's about an hour later when he emerges, and we walk down to the lobby"
+
+    scene hotellobby
+    show odin annoyed
+    show sigrun neutral at left 
+    o "Sigrun, go grab breakfast."
+
+    s "Yes sir."
+
+    hide sigrun with fade
+    "In the meantime I look around the room, taking in who's here already."
+
+    show dragon at left
+    show fairies at left
+    show archive at right
+    "The dragon and the fairies seem to be deep in conversation, while The Archive is just standing, staring at the wall"
+
+    "All conversation pauses for a moment as a hotel employee runs out the door, gasping for air."
+
+    o "That was weird-"
 
     jump bomb_goes_off
 
@@ -289,11 +314,51 @@ label start:
 
     label bomb_goes_off:
 
+    show odin eyesclosed
+    "BOOM"
+    with Shake((0,0,0,0),1.0,dist=40)
+    show odin annoyed
+    "{fast}There's screaming, and everyone is running. Some reflex takes over, and before I know it, I'm outside and Odin is behind me, safe."
+
+    scene hoteloutside
+    show odin neutral
+    pl "Are you okay?"
+
+    o "Yes, I'm fine. You did good kid."
+
+    pl "Where are the others?"
+
+    show hm at left
+    hm "We're here."
+
+    "But as I look around I don't see Sigrun, just the hotel, entrance now crumbling."
+
+    "Someone else has called an ambulance, and a firetruck comes to a hard stop."
+    "..."
+    "..."
+    "We wait, for what seems like hours, but when we move to a different hotel, Sigrun isn't with us."
+
+    scene hotellobby
+    show odin neutral
+    show hm at left
+    pl "What would you like to do now?"
+
+    o "You go do what you need to, I'll stay in my room with Hugin and Munin."
+
+    "I almost protest, but think better of it."
+    hide odin neutral
+    hide hm
+    jump meet_everyone
+
     label bomb_not_off:
 
 
 
     label meet_everyone:
+    "I decide to meet the people I haven't so far, and maybe see what they know."
+        menu meet_everyone:
+            "Who should I see first?"
+            
 
 
     label snoop_time:
