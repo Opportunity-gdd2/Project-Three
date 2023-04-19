@@ -3,7 +3,7 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define e = Character("Eileen")
+#define e = Character("Eileen")
 
 define s = Character("Sigrun")
 
@@ -40,17 +40,37 @@ label start:
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
 
-    scene monocsecurities
+    scene monocsecurities with fade
+
+    "I'm finally here"
+    
+    "Ahead of me, Monoc Securities rises, a bastion against the sun."
+    
+    "Today, I'll be joining the ranks of one of the most prestigious security agencies in the world, 
+    protecting the natural and supernatural. It all starts here."
+
+    "*THUNK*"
+
+    "???" "Sorry about that! The doors aren't automatic."
+    
+    "Nice going, day one and you're already having to pick yourself off the ground."
+
+    "???" "It's all good! I'm good."
 
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
 
     show sigrun happy
+    
+    "???" "Well you must be our new hire, I'm Sigrun, I'll be your direct report, lets get started on your paperwork."
+
+    scene niceoffice with fade
+    show sigrun happy
 
     # These display lines of dialogue.
 
-    $ player_name = renpy.input("Okay, all that's left is for you to sign at the bottom")
+    $ player_name = renpy.input("It goes surprisingly quickly, all that's left is to sign at the bottom")
 
     $ player_name = player_name.strip() or "Barnaby"
 
