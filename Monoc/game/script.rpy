@@ -38,7 +38,7 @@ default bomb_found = False
 default vamp_evidence = False
 # who have you met?
 default met_pope = False
-default et_ev = False
+default met_ev = False
 default met_nv = False
 default met_m = False
 default met_hm = False
@@ -348,21 +348,72 @@ label start:
     "I almost protest, but think better of it."
     hide odin neutral
     hide hm
-    jump meet_everyone
+    jump meeting_post_bomb
 
     label bomb_not_off:
 
 
 
-    label meet_everyone:
+    # placeholder, mvp
+    label meeting_post_bomb:
     "I decide to meet the people I haven't so far, and maybe see what they know."
-        menu meet_everyone:
-            "Who should I see first?"
-            
-
+    menu meet_everyone:
+        "Who should I see first?"
+        "I think I've met everyone I care to know.":
+            jump snoop_time
+        "I'll introduce myself to the pope" if not met_pope:
+            show pope neutral
+            pl "Hello Pope, I'm [pl]"
+            p "Hi [pl] I'm a little shaken up, but not as shaken up as you might expect me to be"
+            $ met_pope = True
+            hide pope neutral
+            jump meet_everyone
+        "I'll introduce myself to one of the vampires" if not met_ev:
+            show ev neutral
+            pl "Hi! I'm [pl], who are you?"
+            ev "Bleh bleh bleh! I'm a vampire! But not a very nice one!"
+            $ met_ev = True
+            hide ev neutral
+            jump meet_everyone
+        "I'll introduce myself to one of the other vampires" if not met_nv:
+            show nv neutral
+            pl "Hi! I'm [pl], who are you?"
+            nv "Hi [pl], I'm a very chill vampire."
+            $ met_nv = True
+            hide ev neutral
+            jump meet_everyone
+        "I'll introduce myself to Queen Mab" if not met_m:
+            show m neutral
+            pl "Hello your majesty! I'm [pl]."
+            m "I'm the organizer, and so am upset that the meeting has gone wrong, but I will do anything to get the accords signed."
+            $ met_m = True
+            hide m neutral
+            jump meet_everyone
+        "I'll introduce myself to the dragon" if not met_d:
+            show d neutral
+            pl "Hi! I'm [pl], who are you?"
+            d "I'm Ferrovax, I am older than mankind and just here for the food :)"
+            $ met_d = True
+            hide m neutral
+            jump meet_everyone
+        "I'll introduce myself to the fairies" if not met_fa:
+            show fa neutral
+            pl "Hi! I'm [pl], who are you?"
+            fa "We're Puck, Titania and Oberron, and we're just kind of following Mab's lead."
+            $ met_fa = True
+            hide fa neutral
+            jump meet_everyone
+        "I'll introduce myself to The Archive" if not met_a:
+            show a neutral
+            pl "Hello Archive, I'm [pl], nice to meet you."
+            a "Ah, so you were the one just hired on by Monoc."
+            pl "0.0 Wow"
+            $ met_a = True
+            hide a neutral
+            jump meet_everyone
 
     label snoop_time:
-
+    "There wasn't a lot to learn from anyone, or at least nothing people were willing to admit to. So I decide to head back to the previous hotel and look around."
 
     label vamp_evidence:
 
