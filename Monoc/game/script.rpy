@@ -398,7 +398,7 @@ label start:
                     scene hotelroom
                     show odin annoyed 
                     show sigrun annoyed at left
-                    show hm annoyed at right
+                    show besties annoyed at right
                     "SLAM"
 
                     o "Employees who would rather spy on their own company than do as they're told aren't needed here."
@@ -446,7 +446,7 @@ label start:
 
             scene hotellobby with fade
             show odin annoyed
-            show hm at left
+            show besties annoyed at left
 
             o "About time you got back!"
 
@@ -526,7 +526,7 @@ label start:
 
     pl "Where are the others?"
 
-    show hm at left
+    show besties neutral at left
     hm "We're here."
 
     "But as I look around I don't see Sigrun, just the hotel, entrance now crumbling."
@@ -538,7 +538,7 @@ label start:
 
     scene hotellobby
     show odin neutral
-    show hm at left
+    show besties neutral at left
     pl "What would you like to do now?"
 
     o "You go do what you need to, I'll stay in my room with Hugin and Munin."
@@ -630,47 +630,47 @@ label start:
             hide pope neutral
             jump meet_everyone
         "I'll introduce myself to one of the vampires" if not met_ev:
-            show ev neutral
+            show vampirebad neutral
             pl "Hi! I'm [pl], who are you?"
             ev "Bleh bleh bleh! I'm a vampire! But not a very nice one!"
             $ met_ev = True
-            hide ev neutral
+            hide vampirebad neutral
             jump meet_everyone
         "I'll introduce myself to one of the other vampires" if not met_nv:
-            show nv neutral
+            show vampirechill neutral
             pl "Hi! I'm [pl], who are you?"
             nv "Hi [pl], I'm a very chill vampire."
             $ met_nv = True
-            hide ev neutral
+            hide vampirechill neutral
             jump meet_everyone
         "I'll introduce myself to Queen Mab" if not met_m:
-            show m neutral
+            show mab neutral
             pl "Hello your majesty! I'm [pl]."
             m "I'm the organizer, and so am upset that the meeting has gone wrong, but I will do anything to get the accords signed."
             $ met_m = True
-            hide m neutral
+            hide mab neutral
             jump meet_everyone
         "I'll introduce myself to the dragon" if not met_d:
-            show d neutral
+            show dragon neutral
             pl "Hi! I'm [pl], who are you?"
             d "I'm Ferrovax, I am older than mankind and just here for the food :)"
             $ met_d = True
-            hide m neutral
+            hide dragon neutral
             jump meet_everyone
         "I'll introduce myself to the fairies" if not met_fa:
-            show fa neutral
+            show fairy neutral
             pl "Hi! I'm [pl], who are you?"
             fa "We're Puck, Titania and Oberron, and we're just kind of following Mab's lead."
             $ met_fa = True
-            hide fa neutral
+            hide fairy neutral
             jump meet_everyone
         "I'll introduce myself to The Archive" if not met_a:
-            show a neutral
+            show archive neutral
             pl "Hello Archive, I'm [pl], nice to meet you."
             a "Ah, so you were the one just hired on by Monoc."
             pl "0.0 Wow"
             $ met_a = True
-            hide a neutral
+            hide archive neutral
             jump meet_everyone
 
 
@@ -689,7 +689,7 @@ label start:
     pl "So what now."
 
     s "Now you investigate, see if anyone's acting weird."
-    
+
     menu meet_everyone_no_bomb:
         "Who should I see first?"
         "I think I've met everyone I care to know.":
@@ -703,47 +703,47 @@ label start:
             hide pope neutral
             jump meet_everyone_no_bomb
         "I'll introduce myself to one of the vampires" if not met_ev:
-            show ev neutral
+            show vampirebad neutral
             pl "Hi! I'm [pl], who are you?"
             ev "Bleh bleh bleh! I'm a vampire! But not a very nice one!"
             $ met_ev = True
-            hide ev neutral
+            hide vampirebad neutral
             jump meet_everyone_no_bomb
         "I'll introduce myself to one of the other vampires" if not met_nv:
-            show nv neutral
+            show vampirechill neutral
             pl "Hi! I'm [pl], who are you?"
             nv "Hi [pl], I'm a very chill vampire."
             $ met_nv = True
-            hide ev neutral
+            hide vampirechill neutral
             jump meet_everyone_no_bomb
         "I'll introduce myself to Queen Mab" if not met_m:
-            show m neutral
+            show mab neutral
             pl "Hello your majesty! I'm [pl]."
             m "I'm the organizer, and so am upset that the meeting has gone wrong, but I will do anything to get the accords signed."
             $ met_m = True
-            hide m neutral
+            hide mab neutral
             jump meet_everyone_no_bomb
         "I'll introduce myself to the dragon" if not met_d:
-            show d neutral
+            show dragon neutral
             pl "Hi! I'm [pl], who are you?"
             d "I'm Ferrovax, I am older than mankind and just here for the food :)"
             $ met_d = True
-            hide m neutral
+            hide dragon neutral
             jump meet_everyone_no_bomb
         "I'll introduce myself to the fairies" if not met_fa:
-            show fa neutral
+            show fairy neutral
             pl "Hi! I'm [pl], who are you?"
             fa "We're Puck, Titania and Oberron, and we're just kind of following Mab's lead."
             $ met_fa = True
-            hide fa neutral
+            hide fairy neutral
             jump meet_everyone_no_bomb
         "I'll introduce myself to The Archive" if not met_a:
-            show a neutral
+            show archive neutral
             pl "Hello Archive, I'm [pl], nice to meet you."
             a "Ah, so you were the one just hired on by Monoc."
             pl "0.0 Wow"
             $ met_a = True
-            hide a neutral
+            hide archive neutral
             jump meet_everyone_no_bomb
 
     label snoop_time:
