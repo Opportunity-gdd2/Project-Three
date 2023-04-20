@@ -263,7 +263,11 @@ label start:
 
     # DAY TWO
     label day_two:
-    scene day_two with fade
+    scene day2 with MultipleTransition([
+        False, Fade(0.5, 0.0, 0.5),
+        "day2.png", Pause(1.0),
+        True])
+    #pause(delay = 1.0, hard = False)
     scene hotelroom with fade
 
     if bomb_found:
@@ -486,7 +490,7 @@ label start:
 
             "Chem Lab Girl" "Mostly gardening."
 
-            pl "Are you sure? Is that all it's used for."
+            pl "Are you sure? Is that all it's used for?"
 
             "Chem Lab Girl" "Sometimes bombs too but it's not very likely, there's better options."
 
@@ -641,7 +645,7 @@ label start:
         "Who should I see first?"
         "I think I've met everyone I care to know.":
             jump snoop_time
-        "I'll introduce myself to the pope" if not met_pope:
+        "I'll introduce myself to The Pope" if not met_pope:
             show pope neutral
             pl "Hello Pope, I'm [pl]"
             po "Hi [pl] I'm a little shaken up, but not as shaken up as you might expect me to be"
@@ -714,7 +718,7 @@ label start:
         "Who should I see first?"
         "I think I've met everyone I care to know.":
             jump snoop_time
-        "I'll introduce myself to the pope" if not met_pope:
+        "I'll introduce myself to The Pope" if not met_pope:
             show pope neutral
             pl "Hello Pope, I'm [pl]"
             po "Hi [pl] I'm a little shaken up, but not as shaken up as you might expect me to be"
