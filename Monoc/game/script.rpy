@@ -314,9 +314,9 @@ label start:
     hide sigrun with fade
     "In the meantime I look around the room, taking in who's here already."
 
-    show dragon at left
-    show fairies at left
-    show archive at right
+    show dragon neutral at left
+    show fairies neutral at left
+    show archive neutral at right
     "The dragon and the fairies seem to be deep in conversation, while The Archive is just standing, staring at the wall"
 
     "All conversation pauses for a moment as a hotel employee runs out the door, gasping for air."
@@ -524,7 +524,7 @@ label start:
 
             show dragon at left
             show fairies at left
-            show archive at right
+            show archive neutral at right
             "The dragon and the fairies seem to be deep in conversation, while The Archive is just standing, staring at the wall"
 
             "All conversation pauses for a moment as a hotel employee runs out the door, gasping for air."
