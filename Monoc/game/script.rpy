@@ -27,8 +27,6 @@ define fa = Character("Fairy")
 define d = Character("Ferrovax")
 
 define pl = Character("[player_name]")
-
-
 # Variables declared here
 # measure of how much evidence/suspicion the player has for the pope
 default pope_score = 0
@@ -91,11 +89,11 @@ label start:
     show sigrun happy
 
     # These display lines of dialogue.
-
+    show contract
     $ player_name = renpy.input("It goes surprisingly quickly, all that's left is to sign at the bottom")
 
     $ player_name = player_name.strip() or "Barnaby"
-
+    hide contract
     s "Perfect, you're officially a member of Monoc Securities, [player_name]."
     
     menu intro:
