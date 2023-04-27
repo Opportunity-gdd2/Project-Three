@@ -565,7 +565,7 @@ label start:
 
     "I almost protest, but think better of it."
     hide odin neutral
-    hide hm
+    hide besties neutral at left
     jump meeting_post_bomb
 
     label breakfast_invest:
@@ -589,7 +589,7 @@ label start:
                     with Shake((0,0,0,0),1.0,dist=40)
                     "I'm not even around long enough to understand what happened, but Sigrun's worried face tells me enough."
                     "Probably shouldn't have treated that so lightly"
-                    with Fade(5.0)
+                    with Fade(5.0, 1.0, 0.5)
                     return
                 "Just to be safe, I'm going to dunk it in water":
                     "I don't know if it's actually dangerous but I mean, worst case I've waterlogged someone's suspicious toy"
