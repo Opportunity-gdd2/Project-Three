@@ -27,8 +27,6 @@ define fa = Character("Fairy")
 define d = Character("Ferrovax")
 
 define pl = Character("[player_name]")
-
-
 # Variables declared here
 # measure of how much evidence/suspicion the player has for the pope
 default pope_score = 0
@@ -91,11 +89,11 @@ label start:
     show sigrun happy
 
     # These display lines of dialogue.
-
+    show contract
     $ player_name = renpy.input("It goes surprisingly quickly, all that's left is to sign at the bottom")
 
     $ player_name = player_name.strip() or "Barnaby"
-
+    hide contract
     s "Perfect, you're officially a member of Monoc Securities, [player_name]."
     
     menu intro:
@@ -263,7 +261,11 @@ label start:
 
     # DAY TWO
     label day_two:
-    scene day_two with fade
+    scene day2 with MultipleTransition([
+        False, Fade(0.5, 0.0, 0.5),
+        "day2.png", Pause(1.0),
+        True])
+    #pause(delay = 1.0, hard = False)
     scene hotelroom with fade
 
     if bomb_found:
@@ -311,9 +313,9 @@ label start:
     hide sigrun with fade
     "In the meantime I look around the room, taking in who's here already."
 
-    show dragon at left
-    show fairies at left
-    show archive at right
+    show dragon neutral at left
+    show fairies neutral at left
+    show archive neutral at right
     "The dragon and the fairies seem to be deep in conversation, while The Archive is just standing, staring at the wall"
 
     "All conversation pauses for a moment as a hotel employee runs out the door, gasping for air."
@@ -487,7 +489,7 @@ label start:
 
             "Chem Lab Girl" "Mostly gardening."
 
-            pl "Are you sure? Is that all it's used for."
+            pl "Are you sure? Is that all it's used for?"
 
             "Chem Lab Girl" "Sometimes bombs too but it's not very likely, there's better options."
 
@@ -521,7 +523,7 @@ label start:
 
             show dragon at left
             show fairies at left
-            show archive at right
+            show archive neutral at right
             "The dragon and the fairies seem to be deep in conversation, while The Archive is just standing, staring at the wall"
 
             "All conversation pauses for a moment as a hotel employee runs out the door, gasping for air."
