@@ -631,7 +631,7 @@ label start:
             with Shake((0,0,0,0),1.0,dist=40)
             "I'm not even around long enough to understand what happened, but Sigrun's worried face tells me enough."
             "Probably shouldn't have ignored that..."
-            with Fade(5.0)
+            with Fade(5.0, 1.0, 0.5)
             return
 
     # placeholder, mvp
@@ -709,6 +709,7 @@ label start:
     pl "So what now."
 
     s "Now you investigate, see if anyone's acting weird."
+    hide sigrun content
 
     menu meet_everyone_no_bomb:
         "Who should I see first?"
@@ -989,7 +990,7 @@ label start:
 
         pl "It's no-"
 
-        show odin neutral left
+        show odin neutral at left
         o "Kid."
 
         pl "Ah, I'll catch you later!"
@@ -997,6 +998,7 @@ label start:
         fa "Of course."
 
         hide fairy happy
+        hide odin neutral at left
         show odin neutral
         o "I just saved you something very valuable."
 
