@@ -640,7 +640,7 @@ label start:
     menu meet_everyone:
         "Who should I see first?"
         "I think I've met everyone I care to know.":
-            jump snoop_time
+            jump snoop_time_bomb
         "I'll introduce myself to the pope" if not met_pope:
             show pope neutral
             pl "Hello Pope, I'm [pl]"
@@ -650,47 +650,47 @@ label start:
             hide pope neutral
             jump meet_everyone
         "I'll introduce myself to one of the vampires" if not met_ev:
-            show vampirebad neutral
+            show vampirebad annoyed
             pl "Hi! I'm [pl], who are you?"
             ev "Bleh bleh bleh! I'm a vampire! But not a very nice one!"
             $ met_ev = True
-            hide vampirebad neutral
+            hide vampirebad annoyed
             jump meet_everyone
         "I'll introduce myself to one of the other vampires" if not met_nv:
-            show vampirechill neutral
+            show vampirechill worried
             pl "Hi! I'm [pl], who are you?"
             nv "Hi [pl], I'm a very chill vampire."
             $ met_nv = True
-            hide vampirechill neutral
+            hide vampirechill worried
             jump meet_everyone
         "I'll introduce myself to Queen Mab" if not met_m:
-            show mab neutral
+            show mab worried
             pl "Hello your majesty! I'm [pl]."
             m "I'm the organizer, and so am upset that the meeting has gone wrong, but I will do anything to get the accords signed."
             $ met_m = True
-            hide mab neutral
+            hide mab worried
             jump meet_everyone
         "I'll introduce myself to the dragon" if not met_d:
-            show dragon neutral
+            show dragon worried
             pl "Hi! I'm [pl], who are you?"
             d "I'm Ferrovax, I am older than mankind and just here for the food :)"
             $ met_d = True
-            hide dragon neutral
+            hide dragon worried
             jump meet_everyone
         "I'll introduce myself to the fairies" if not met_fa:
-            show fairy neutral
+            show fairy worried
             pl "Hi! I'm [pl], who are you?"
             fa "We're Puck, Titania and Oberron, and we're just kind of following Mab's lead."
             $ met_fa = True
-            hide fairy neutral
+            hide fairy worried
             jump meet_everyone
         "I'll introduce myself to The Archive" if not met_a:
-            show archive neutral
+            show archive worried
             pl "Hello Archive, I'm [pl], nice to meet you."
             a "Ah, so you were the one just hired on by Monoc."
             pl "0.0 Wow"
             $ met_a = True
-            hide archive neutral
+            hide archive worried
             jump meet_everyone
 
 
@@ -713,11 +713,11 @@ label start:
     menu meet_everyone_no_bomb:
         "Who should I see first?"
         "I think I've met everyone I care to know.":
-            jump snoop_time
+            jump snoop_time_nobomb
         "I'll introduce myself to the pope" if not met_pope:
             show pope neutral
             pl "Hello Pope, I'm [pl]"
-            po "Hi [pl] I'm a little shaken up, but not as shaken up as you might expect me to be"
+            po "Hi [pl], what a wonderful job you've done! I'm so glad that you were able to diffuse the issue."
             $ met_pope = True
             $ pope_score += 1
             hide pope neutral
@@ -739,7 +739,7 @@ label start:
         "I'll introduce myself to Queen Mab" if not met_m:
             show mab neutral
             pl "Hello your majesty! I'm [pl]."
-            m "I'm the organizer, and so am upset that the meeting has gone wrong, but I will do anything to get the accords signed."
+            m "I'm the organizer, and I'm so thankful that you were able to save the meeting, I will do anything to get the accords signed."
             $ met_m = True
             hide mab neutral
             jump meet_everyone_no_bomb
@@ -766,14 +766,297 @@ label start:
             hide archive neutral
             jump meet_everyone_no_bomb
 
-    label snoop_time:
-    "There wasn't a lot to learn from anyone, or at least nothing people were willing to admit to. So I decide to head back to the previous hotel and look around."
+    label snoop_time_bomb:
+    "There wasn't a lot to learn from anyone, or at least nothing people were willing to admit to. I decide to head back to the previous hotel and look around."
     "I call Odin's room, and let him know where I'm heading so he doesn't leave."
+    jump look_rubble
+
+    label snoop_time_nobomb:
+    "There wasn't a lot to learn from anyone, or at least nothing people were willing to admit to. It'd be better to look around the hotel more and see what I can find."
+    jump look_hotel
+
     #label vamp_evidence:
+    menu look_rubble:
+        "Look at the left pile, by the old kitchen nook":
+            "As much as I look, I can't find anything more than ashes."
+            jump discuss_evidence  
+        "Look at the right pile, by the check-in desk":
+            "There's some scraps of papers, melted binders, mostly just singed by the heat."
+            "Looking closer there's a list of everyone invited to sign the accords."
+            pl "Blah blah blah Mab...blah blah Odin...there I am."
+            pl "Oh! So that's why there's two vampires, one from the Jade Court, one from the Vampire Union."
+            pl "Bleh bleh bleh OooOoo!"
+            "While a lot of the list is missing, either purposefully obscured or burned in the blast, one thing is clear."
+            "Everyone else here had a way better hotel room than I did!"
+            pl "At least with the new hotel we're all getting the same one."
+            $ vamp_evidence = True;
+            jump discuss_evidence
+    menu look_hotel:
+        "Look at the kitchen nook":
+            "Wandering back over to the nook, I try to see if I can find anything suspicious."
 
-    #label evening:
+            "If the bomb was here there should be other stuff right?"
+
+            "But the search is unsuccessful."
+
+            "The only suspicious thing is how simultaneously watery and pulpy the supposedly pulp-free orange juice is."
+            
+            jump discuss_evidence
+        "Look by the check-in desk":
+            "There's some scraps of papers, but with the attendant, I can't get a good look around."
+            pl "Monoc Securities, I need to search this desk."
+
+            "Concierge" "Why? I'm pretty sure the real cops are on the way to investigate."
+
+            "Okay, new angle."
+
+            pl "Please can you just let me do this, my boss will kill me if I don't look busy."
+
+            "The conierge looks at me sympathetically."
+
+            "Concierge" "Fine, you can have 10 minutes."
+
+            pl "Thank you!"
+
+            "Looking closer there's a list of everyone invited to sign the accords."
+            pl "Blah blah blah Mab...blah blah Odin...there I am."
+            pl "Oh! So that's why there's two vampires, one from the Jade Court, one from the Vampire Union."
+            pl "Bleh bleh bleh OooOoo!"
+            "While a lot of the list is missing, probably purposefully obscured for security, one thing is clear."
+            "Everyone else here had a way better hotel room than I did!"
+            pl "At least with the new hotel we're all getting the same one."
+            $ vamp_evidence = True;
+            jump discuss_evidence
+
+    label discuss_evidence:
+    "I head back to the main group, hoping to update Odin on what I've found."
+    scene hotellobby with fade
+    show odin annoyed
+    show fairy angry at left
+    show vampirechill surprised at right
+    
+    "I don't arrive at a peaceful scene."
+    with Shake((0,0,0,0),1.0,dist=10)
+    
+    fa "{fast}I KNOW IT WAS YOU!"
+
+    nv "{fast}No I didn't!"
+
+    pl "What's going on?"
+
+    "Both whip around to face me."
+
+    fa "Oh good you're back! Take her away officer, it was this one right here!"
+
+    nv "I didn't do anything! This fairy just decided I did it! Please don't arrest me!"
+
+    o "Oh please this idiots not a cop! Come're kid."
+
+    "I quickly walk over, now knowing that I can't arrest anyone, the two resume their arguing."
+
+    pl "So what's up with them?"
+
+    o "Well, the fairy thinks the vampire's the one who set the bomb. But I think you got that."
+
+    pl "Why does she think that? Just like, vibe?"
+
+    o "Kind of, but it looks like people are starting to buy it."
+
+    menu vamp_help_hurt:
+        "I need to help that vampire":
+            menu vampchoice:
+                "Why are you so sure they did it?":
+                    fa "Vampires have the ability to steal someone's breath! Ferrovax and I were up early, and saw the whole thing!"
+
+                    fa "Right before, there was an employee who came running out of the breakfast nook and guess what they were doing?!"
+
+                    fa "{fast}THAT'S RIGHT!"
+
+                    fa "Gasping for air!"
+
+                    "Crowd" "*GASP!*"
+
+                    "Shoot."
+
+                    fa "What do you have to say for yourself?!"
+
+                    nv "I'm not that kind of vampire! That's the Jade Court!"
+
+                    fa "How do we know that for sure?"
+
+                    "I rack my brain, trying to think of something, anything to say to keep the heat off this vampire."
+
+                    pl "I know they didn't do it!"
+
+                    fa "Oh yeah? How?"
+
+                    pl "Because I planted the bomb!"
+
+                    show mab annoyed
+                    with Shake((0,0,0,0),0.5,dist=10)
+
+                    m "I will not allow you to interfere in the accords any further."
+
+                    "I always thought, that when my life flashed before my eyes that it would be something amazing, watching all the beautiful things I'd done play out."
+                    "It's a lot more sitting around than I thought it would be."
+
+                    return
+                "I have proof they didn't do it." if vamp_evidence:
+
+                    "This stops the fairy mid flight, and it takes a second for her to get back to eye level."
+
+                    fa "What proof? Why didn't you say so?"
+
+                    nv "Oh my god just let them talk!"
+
+                    pl "I was looking around the hotel and found the original registers. It looked like they had been intentionally messed with."
+
+                    fa "So?"
+
+                    pl "Well, there were two sets of vampires invited, a vampire representative of the clans that confirmed they would sign, that's [nv]"
+
+                    nv "THANK YOU! SEE! The entire reason I'm here is to sign them, I wouldn't try to bomb the accords!"
+
+                    fa "So who did it then?"
+
+                    pl "I'm not certain yet, but I know that what you're accusing them of can't work."
+
+                    fa "No, because they could be a dissenter!"
+
+                    pl "No listen! The only vampires who can steal breath are the Jade Court vampires right?"
+
+                    nv "Exactly"
+
+                    pl "The Jade Court Vampires hadn't agreed to sign yet, so [nv] isn't their delegate!"
+
+                    pl "They sent their own vampire!"
+
+                    fa "Then it's the other!"
+
+                    pl "MAYBE! But remember, you accused [nv] and were wrong, I'd hold off on the accusations for now."
+
+                    fa "..."
+
+                    hide fairy angry at left
+                    show fairy worried at left
+                    
+                    fa "Fine"
+
+                    "The fairy backing down seems to have settled the crowd. No longer a mob, people return to their respective cliques."
+                    jump vamp_stay
+        "I need to help that fairy":
+            pl "Would a fairy really lie?"
+
+            fa "Exactly! Even if I didn't know for sure, since fairies can't lie once I say something outloud that means it's true!"
+
+            pl "That's pretty convincing..."
+
+            nv "Are you kidding?? Of course fairies can lie!"
+
+            pl "Well, even if you didn't do it, is there a reason you need to stay?"
+
+            nv "Yeah of course, I have to sign the Accords on behalf of my clan!"
+
+            pl "... So it doesn't really have to be you then. Can you call someone else so that we're being extra safe?"
+
+            hide vampirechill surprised at right
+            show vampirechill worried at right
+            nv "...Yeah. Sure. Whatever."
+
+            pl "Great, now everyone can still feel safe!"
+
+            fa "Perfect!"
+
+            nv "You're making enemies pretty early in your career [pl], watch your back."
+            hide vampirechill worried at right
+            pl "Hmm. I think I might have been right. Otherwise that's a pretty rude thing to say."
+
+            jump vamp_kick
+            
 
 
+    label vamp_kick:
+        scene hotellobby
+        show fairy happy
+
+        "Once the vampire leaves, everyone returns into their groups, with Mab contacting the Vampire Union for a new representative."
+
+        fa "Hey! [pl]!"
+
+        pl "What's up?"
+
+        fa "Thank you, for having my back there."
+
+        pl "It's no-"
+
+        show odin neutral left
+        o "Kid."
+
+        pl "Ah, I'll catch you later!"
+
+        fa "Of course."
+
+        hide fairy happy
+        show odin neutral
+        o "I just saved you something very valuable."
+
+        pl "Huh?"
+
+        o "Fairies don't say thank you lightly, and you should never thank them either."
+
+        pl "Wait why, isn't that polite."
+
+        o "For humans yes, for fairies it's acknowledging a debt."
+
+        o "Once you dismiss it, they can claim the debt is paid."
+
+        pl "Oh, so now they owe me?"
+
+        o "Yeah, and it'll be useful one day. Other than you, everyone here is pretty high up."
+
+        pl "So then what about that vampire? [nv]?"
+
+        o "Who knows? Maybe it'll be fine, maybe they weren't bluffing about you regretting it."
+
+        pl "I feel like I have to doubt everyone here's intentions. Like a massive game is being played around me."
+
+        jump evening
+
+    label vamp_stay:
+        scene hotellobby
+        show vampirechill happy
+
+        nv "Hey [pl], I just wanted to thank you. It's pretty rough going up against everyone like that."
+
+        pl "Of course! It's my job!"
+
+        show odin neutral at left
+
+        o "No it's not. Your job is to protect me."
+
+        hide vampirechill happy
+        show vampirechill worried 
+        nv "Oh I'm sorry, I didn't mean to get you in trouble, I'm going to head out."
+        hide vampirechill worried
+
+        pl "..."
+        pl "Am I in trouble?"
+
+        o "No, not really. I wasn't in danger. But they seemed to be getting a little close there."
+
+        pl "They were just thankful."
+
+        jump evening
+
+
+    label evening:
+    
+    o "Doubt will serve you well in this industry kid. Let's head up now, better to not stick around."
+    
+    scene hotelroom with fade
+    "It was certainly an eventful day, and I've learned a lot. Tomorrow, the Accords are being signed."
+    "Everyone's already sleeping, and as I prepare to join them I go over the evidence I've found."
+    "I know who I suspect, but will I be right? Will I be able to protect not only Odin, but the entire magical world?"
 
     label day_three:
     return
