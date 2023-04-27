@@ -297,7 +297,8 @@ label start:
     "..."
     "..."
     show odin annoyed
-
+    hide sigrun neutral
+    show sigrun neutral at left 
     "It's about an hour later when he emerges, and we walk down to the lobby"
 
     scene hotellobby
