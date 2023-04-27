@@ -1,6 +1,7 @@
 ﻿# The script of the game goes in this file.
 
 $ import shake
+
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
@@ -71,8 +72,9 @@ label start:
     "Today, I'll be joining the ranks of one of the most prestigious security agencies in the world, 
     protecting the natural and supernatural. It all starts here."
 
+    play sound "audio/Thud.mp3"
     "*THUNK*"
-
+   
     "???" "Sorry about that! The doors aren't automatic."
     
     "Nice going, day one and you're already having to pick yourself off the ground."
@@ -273,7 +275,11 @@ label start:
     pl "Well...up and at'em I guess."
     "I take my time getting up and into uniform before heading out the door, and go to meet Odin and crew at his room."
 
+    play sound "audio/Knock1.mp3"
     "*KNOCK KNOCK*"
+
+    # Alternative Knock Sound
+    # play sound "audio/Knock2.mp3"
 
     "???" "Fuck off!"
 
@@ -533,8 +539,9 @@ label start:
 
     $ sigrun_dead = True
     show odin eyesclosed
-    "BOOM"
+    play sound "audio/Explosion.mp3" fadeout 3.0
     with Shake((0,0,0,0),1.0,dist=40)
+    "BOOM"
     show odin annoyed
     "{fast}There's screaming, and everyone is running. Some reflex takes over, and before I know it, I'm outside and Odin is behind me, safe."
 
@@ -552,6 +559,7 @@ label start:
     "But as I look around I don't see Sigrun, just the hotel, entrance now crumbling."
 
     "Someone else has called an ambulance, and a firetruck comes to a hard stop."
+    play sound "audio/Siren.mp3"
     "..."
     "..."
     "We wait, for what seems like hours, but when we move to a different hotel, Sigrun isn't with us."
