@@ -518,11 +518,11 @@ label start:
 
             s "Yes sir."
 
-            hide sigrun with fade
+            hide sigrun neutral with fade
             "In the meantime I look around the room, taking in who's here already."
 
-            show dragonreal at left
-            show fairy at left
+            show dragonreal neutral at left
+            show fairy neutral at left
             show archive neutral at right
             "The dragon and the fairies seem to be deep in conversation, while The Archive is just standing, staring at the wall"
 
