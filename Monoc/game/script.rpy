@@ -326,7 +326,7 @@ label start:
             $ seen_pool = True
             jump searchvenue
         "Conference Room" if not seen_conferenceroom:
-            scene hotellobby
+            scene hotelconfrenceroom
             pl "There are a bunch of staff members prepping the conference room, seems a little hectic in here."
             show vampirebad neutral
             ev "Pardon me, you’re with Monoc Securities correct?"
@@ -350,7 +350,7 @@ label start:
             $ seen_conferenceroom = True
             jump searchvenue
         "Hotel Room" if not seen_hotelroom:
-            scene HotelRoom
+            scene hotelroom
             pl "Here’s my hotel room, it looks pretty standard."
             pl "Nobody’s around right now…"
             menu takenap:
@@ -374,6 +374,7 @@ label start:
             $ seen_hotelroom = True
             jump searchvenue
         "Alleyway" if not seen_alleyway:
+            scene backalley
             pl "Right outside the venue is a small alleyway.  It’s pretty dirty and gross, but that’s Chicago for you."
             "???" "*whisper* *whisper*"
             pl "Huh? I can hear voices from deeper in the alleyway."
@@ -399,7 +400,7 @@ label start:
             menu crawlvents:
                 "Crawl through the vents?"
                 "Yes":
-                    scene vents
+                    scene vent
                     pl "Squeezing through the vents is easier than I expected.  Really makes me feel like I’m in a spy movie."
                     pl "(humming Mission: Impossible theme)"
                     pl "Huh? Looks like the vents lead to the alleyway outside the hotel."
@@ -408,7 +409,7 @@ label start:
                     menu listenin:
                         "Listen in?"
                         "Yes":
-                            scene alleyway
+                            scene backalley
                             "???" "Did anyone see you?"
                             show vampirebad sly
                             ev "Of course not, but it had to be moved from the conference room."
@@ -479,7 +480,7 @@ label start:
             hide sigrun happy
             show sigrun worried
             s "Sounds serious.  Let’s get some backup and talk to them."
-            scene HotelConferenceRoom
+            scene hotelconfrenceroom
             pl "This is where the Vampires were earlier, but I don’t see any sign of them now."
             hide sigrun worried
             show sigrun neutral
