@@ -1,0 +1,30 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 807, in script
+    show mab annoyed r
+Exception: Image 'mab annoyed' does not accept attributes 'r'.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 807, in script
+    show mab annoyed r
+  File "/usr/share/renpy/renpy/ast.py", line 1408, in execute
+    show_imspec(self.imspec, atl=getattr(self, "atl", None))
+  File "/usr/share/renpy/renpy/ast.py", line 1371, in show_imspec
+    renpy.config.show(name,
+  File "/usr/share/renpy/renpy/exports.py", line 686, in show
+    if not base.find_target() and renpy.config.missing_show:
+  File "/usr/share/renpy/renpy/display/image.py", line 414, in find_target
+    self.target = target._duplicate(a)
+  File "/usr/share/renpy/renpy/display/core.py", line 397, in _duplicate
+    args.extraneous()
+  File "/usr/share/renpy/renpy/display/core.py", line 265, in extraneous
+    raise Exception("Image '{}' does not accept attributes '{}'.".format(
+Exception: Image 'mab annoyed' does not accept attributes 'r'.
+
+Linux-6.2.9-arch1-1-x86_64-with-glibc2.37 x86_64
+Ren'Py 8.0.3.0
+Monoc 1.0
+Mon May  1 14:07:28 2023

@@ -31,7 +31,7 @@ define pl = Character("[player_name]")
 
 # Variables declared here
 # measure of how much evidence/suspicion the player has for the pope
-default pope_score = 0
+default pope_score = 2
 # default bomb evidence to false
 default bomb_found = False
 # do you have evidence to acquit the vampires?
@@ -789,27 +789,35 @@ label start:
                 show mab neutral
                 m "I don't know, but we seem to be trapped. He jammed the door behind him"
                 jump game_over_explosion
-            "This can't be good!":
+            "This can't be good!" if pope_score > 0:
                 if pope_score > 1:
                     pl "Everyone be on your gaurd, I think he was behind the bomb!"
                     show pope annoyed
                     po "What? I-"
-                    hide pope
-                    show vampirechill
+                    show vampirechill at right
                     nv "I'll show you to frame us!"
                     "SMACK" with Shake((0,0,0,0),1.0,dist=40)
+                    hide pope
                     hide vampirechill
-                    show vampirebad neutral
                     "The door opens"
+                    show vampirebad neutral
                     ev "Hey, what's the hold up? Are we blowing this-"
                     show vampirebad annoyed
                     ev "Ugh, we didn't need him anyways, he can go with the rest of you"
-                    hide vampirebad
-                    show mab annoyed
+                    show mab annoyed at left
                     "SMACK" with Shake((0,0,0,0),1.0,dist=40)
-                    jump game_over_successful
-
-                if pope_score > 0:
+                    hide vampirebad
+                    hide mab
+                    show odin
+                    o "Well, hopefully that's the last iterruption before we can get this signed"
+                    hide odin
+                    show mab
+                    m "Yes, thank you for preventing that"
+                    hide mab
+                    show monocsecurities
+                    "After the accords were signed, we returned to Monoc Securities."
+                    "Everyone went about their days like normal, I guess this kind of excitement is normal around here"
+                elif pope_score > 0:
                     pl "Sir, I think we should be careful, I don't trust him."
                     hide pope
                     show odin
@@ -826,6 +834,6 @@ label start:
         "BOOM"
         with Shake((0,0,0,0),1.0,dist=40)
         ""
-        with Fade(5.0)
+        with Fade(5.0, 1.0, 0.5)
     return
     # This ends the game.
