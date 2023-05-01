@@ -599,8 +599,8 @@ label start:
     hide sigrun with fade
     "In the meantime I look around the room, taking in who's here already."
 
-    show dragon neutral at left
-    show fairies neutral at left
+    show dragonreal neutral at left
+    show fairy neutral at left
     show archive neutral at right
     "The dragon and the fairies seem to be deep in conversation, while The Archive is just standing, staring at the wall"
 
@@ -707,7 +707,7 @@ label start:
                     scene hotelroom
                     show odin annoyed 
                     show sigrun annoyed at left
-                    show besties annoyed at right
+                    show twins annoyed at right
                     "SLAM"
 
                     o "Employees who would rather spy on their own company than do as they're told aren't needed here."
@@ -755,7 +755,7 @@ label start:
 
             scene hotellobby with fade
             show odin annoyed
-            show besties annoyed at left
+            show twins annoyed at left
 
             o "About time you got back!"
 
@@ -804,11 +804,11 @@ label start:
 
             s "Yes sir."
 
-            hide sigrun with fade
+            hide sigrun neutral with fade
             "In the meantime I look around the room, taking in who's here already."
 
-            show dragon at left
-            show fairies at left
+            show dragonreal neutral at left
+            show fairy neutral at left
             show archive neutral at right
             "The dragon and the fairies seem to be deep in conversation, while The Archive is just standing, staring at the wall"
 
@@ -835,7 +835,7 @@ label start:
 
     pl "Where are the others?"
 
-    show besties neutral at left
+    show twins neutral at left
     hm "We're here."
 
     "But as I look around I don't see Sigrun, just the hotel, entrance now crumbling."
@@ -847,14 +847,14 @@ label start:
 
     scene hotellobby
     show odin neutral
-    show besties neutral at left
+    show twins neutral at left
     pl "What would you like to do now?"
 
     o "You go do what you need to, I'll stay in my room with Hugin and Munin."
 
     "I almost protest, but think better of it."
     hide odin neutral
-    hide besties neutral at left
+    hide twins neutral at left
     jump meeting_post_bomb
 
     label breakfast_invest:
@@ -960,11 +960,11 @@ label start:
             hide mab worried
             jump meet_everyone
         "I'll introduce myself to the dragon" if not met_d:
-            show dragon worried
+            show dragonreal worried
             pl "Hi! I'm [pl], who are you?"
             d "I'm Ferrovax, I am older than mankind and just here for the food :)"
             $ met_d = True
-            hide dragon worried
+            hide dragonreal worried
             jump meet_everyone
         "I'll introduce myself to the fairies" if not met_fa:
             show fairy worried
@@ -1034,11 +1034,11 @@ label start:
             hide mab neutral
             jump meet_everyone_no_bomb
         "I'll introduce myself to the dragon" if not met_d:
-            show dragon neutral
+            show dragonreal neutral
             pl "Hi! I'm [pl], who are you?"
             d "I'm Ferrovax, I am older than mankind and just here for the food :)"
             $ met_d = True
-            hide dragon neutral
+            hide dragonreal neutral
             jump meet_everyone_no_bomb
         "I'll introduce myself to the fairies" if not met_fa:
             show fairy neutral
