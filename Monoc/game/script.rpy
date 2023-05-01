@@ -303,7 +303,7 @@ label start:
 
                 "Yes":
                     pl "*Splash* You jump into the pool and start doing a few laps."
-                    show dragon happy
+                    show dragonreal happy
                     d "Hello there, I’d expected to have the pool to myself, but company is always a nice surprise."
                     menu dragonresponse:
                         "Choose your response."
@@ -318,7 +318,7 @@ label start:
                     pl "I’m [player_name].  I’m here to provide security for the proceedings."
                     d "That’s good to hear, it fills me with confidence to know that there are reliable people here to ensure this event goes off without a hitch."
                     pl "(He seems pretty chill, for a dragon anyways)"
-                    hide dragon happy
+                    hide dragonreal happy
                     $ met_d = True
                 "No":
                     pl "Better not, I don’t want anyone to catch me goofing off when I should be working."
@@ -525,7 +525,7 @@ label start:
     hide sigrun happy
     show odin annoyed
     show sigrun happy at left
-    show besties at right
+    show twins neutral at right
     o "Ugh, been here 5 minutes and I’m already stressed out.  This is going to be a rough few days."
     menu odinresponse:
         "Choose your response."
@@ -537,7 +537,7 @@ label start:
             pl "Not to worry, we’ve got everything under control sir."
             o "Good, maybe this’ll go smoothly after all."
     hide odin annoyed
-    hide besties
+    hide twins neutral
     hide sigrun happy
     show sigrun happy
     s "Good job today [player_name], you should get some rest in your hotel room, there will be plenty more to investigate tomorrow."
