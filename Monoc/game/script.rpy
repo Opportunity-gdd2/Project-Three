@@ -564,10 +564,11 @@ label start:
     "I take my time getting up and into uniform before heading out the door, and go to meet Odin and crew at his room."
 
     play sound "audio/Knock1.mp3"
-    "*KNOCK KNOCK*"
 
-    # Alternative Knock Sound
+    # Alternate Knock Sound
     # play sound "audio/Knock2.mp3"
+
+    "*KNOCK KNOCK*"
 
     "???" "Fuck off!"
 
@@ -579,6 +580,8 @@ label start:
 
     hide odin annoyed
 
+    # This Sound Can Be Replaced By A Better Door Slam Sound Later
+    play sound "audio/Thud.mp3"
     "He slams the door in my face."
 
     pl "I guess I'll just wait here..."
@@ -714,6 +717,8 @@ label start:
                     show odin annoyed
                     show sigrun annoyed at left
                     show twins annoyed at right
+                    # Another Slam Sound Which Can Be Replaced Later
+                    play sound "audio/Thud.mp3"
                     "SLAM"
 
                     o "Employees who would rather spy on their own company than do as they're told aren't needed here."
@@ -882,8 +887,10 @@ label start:
                     show sigrun content
                     s "Hey! Find anything?"
                     show sigrun worried
-                    "BOOM"
+                    play sound "audio/Explosion.mp3" fadeout 3.0
                     with Shake((0,0,0,0),1.0,dist=40)
+                    "BOOM"
+
                     "I'm not even around long enough to understand what happened, but Sigrun's worried face tells me enough."
                     "Probably shouldn't have treated that so lightly"
                     with Fade(5.0, 1.0, 0.5)
@@ -924,10 +931,12 @@ label start:
             show sigrun content
             s "Hey! Find anything?"
             show sigrun worried
-            "BOOM"
+            play sound "audio/Explosion.mp3" fadeout 5.0
             with Shake((0,0,0,0),1.0,dist=40)
+            "BOOM"
             "I'm not even around long enough to understand what happened, but Sigrun's worried face tells me enough."
             "Probably shouldn't have ignored that..."
+            stop sound fadeout 1.5
             with Fade(5.0, 1.0, 0.5)
             return
 
@@ -997,9 +1006,11 @@ label start:
     # show whatever people we want
     pl "Okay so there was a bomb in the breakfast area."
 
+    play sound "audio/Chatter.mp3" fadein 1.0 volume 0.5
     "This sets off a chorus of whispers, and more than a few dirty looks."
 
     s "Have some tact!"
+    stop sound fadeout 1.5
 
     "Sigrun re-explains what happened, much more professionally than I did. When she finishes she turns to me."
 
@@ -1414,9 +1425,11 @@ label start:
     return
 
     label game_over_explosion:
-        "BOOM"
+        play sound "audio/Explosion.mp3" fadeout 3.0
         with Shake((0,0,0,0),1.0,dist=40)
+        "BOOM"
         ""
+        stop sound
         with Fade(5.0, 1.0, 0.5)
     return
     # This ends the game.
