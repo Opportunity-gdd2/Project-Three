@@ -417,7 +417,7 @@ label start:
                             "???" "We can’t let those accords be signed, no matter the cost!"
                             ev "Whatever you say, as long as I get paid."
                             pl "Sounds VERY suspicious!  I’d better report this to Sigrun."
-                            hide vampire sly
+                            hide vampirebad sly
                             $ vamp_vents = True
                         "No":
                             pl "Why bother, it’s probably nothing, and these vents are uncomfortable anyway."
