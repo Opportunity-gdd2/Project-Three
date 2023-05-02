@@ -1066,9 +1066,9 @@ label start:
     label day_three:
         scene hotelconfrenceroom
         show pope scheming
-        po "I'm glad everyone was able to make it on time, because I have a gift for you all."
+        po "I'm glad everyone was able to make it on time! I have a gift for you all."
         menu reveal_pope:
-            "I wonder what kind of gift a pope gives":
+            "I wonder what kind of gift a pope gives.":
                 po "You see, you all intend to make a big mistake here, so I am giving you the gift of salvation!"
                 po "Now, with that out of the way, I must be going."
                 hide pope
@@ -1080,7 +1080,7 @@ label start:
                 jump game_over_explosion
             "This can't be good!" if pope_score > 0:
                 if pope_score > 1:
-                    pl "Everyone be on your gaurd, I think he was behind the bomb!"
+                    pl "Everyone, be on your guard, I think he was behind the bomb!"
                     show pope annoyed
                     po "What? I-"
                     show vampirechill annoyed at right
@@ -1088,9 +1088,9 @@ label start:
                     "SMACK" with Shake((0,0,0,0),1.0,dist=40)
                     hide pope
                     hide vampirechill
-                    "The door opens"
+                    "The door opens."
                     show vampirebad neutral
-                    ev "Hey, what's the hold up? Are we blowing this-"
+                    ev "Hey, what's the hold-up? Are we blowing this-"
                     show vampirebad annoyed
                     ev "Ugh, we didn't need him anyways, he can go with the rest of you!"
                     show mab annoyed at left
@@ -1098,7 +1098,7 @@ label start:
                     hide vampirebad
                     hide mab
                     show odin annoyed
-                    o "Well, hopefully that's the last iterruption before we can get this signed."
+                    o "Well, hopefully, that's the last interruption before we can get this signed."
                     hide odin
                     show mab relieved
                     m "Yes, thank you for preventing that!"
