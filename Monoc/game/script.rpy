@@ -34,6 +34,7 @@ default pope_score = 0
 # default bomb evidence to false
 default bomb_found = False
 # do you have evidence to acquit the vampires?
+default vamp_vents = False
 default vamp_evidence = False
 # is sigrun dead?
 default sigrun_dead = False
@@ -46,6 +47,16 @@ default met_hm = False
 default met_a = False
 default met_fa = False
 default met_d = False
+# which areas have you been to?
+default seen_pool = False
+default seen_conferenceroom = False
+default seen_hotelroom = False
+default seen_alleyway = False
+default seen_airvents = False
+default seen_kitchen = False
+default seen_seating = False
+default seen_podium = False
+default seen_sidetables = False
 
 
 # The game starts here.
@@ -54,7 +65,7 @@ label start:
 
     # Start Background Music As The Game Starts
     # Commented Out For Now. To Be Used Again Once Title and Game Music Are Different
-    
+
     #play music "audio/BGM_Generic.mp3" fadein 2.0
 
     # Show a background. This uses a placeholder by default, but you can
@@ -64,17 +75,17 @@ label start:
     scene monocsecurities with fade
 
     "I'm finally here"
-    
+
     "Ahead of me, Monoc Securities rises, a bastion against the sun."
-    
-    "Today, I'll be joining the ranks of one of the most prestigious security agencies in the world, 
+
+    "Today, I'll be joining the ranks of one of the most prestigious security agencies in the world,
     protecting the natural and supernatural. It all starts here."
 
     play sound "audio/Thud.mp3"
     "*THUNK*"
    
     "???" "Sorry about that! The doors aren't automatic."
-    
+
     "Nice going, day one and you're already having to pick yourself off the ground."
 
     "???" "It's all good! I'm good."
@@ -84,7 +95,7 @@ label start:
     # directory.
 
     show sigrun happy
-    
+
     "???" "Well you must be our new hire, I'm Sigrun, I'll be your direct report, lets get started on your paperwork."
 
     scene niceoffice with fade
@@ -97,7 +108,7 @@ label start:
     $ player_name = player_name.strip() or "Barnaby"
     hide contract
     s "Perfect, you're officially a member of Monoc Securities, [player_name]."
-    
+
     menu intro:
         "Choose your response."
 
@@ -220,7 +231,7 @@ label start:
             hide odin neutral
             show odin happy
             o "This will be the perfect opportunity for you to sink or swim, and I’m sure you won’t let us down."
-    
+
     hide odin happy
     show sigrun happy
 
@@ -240,7 +251,7 @@ label start:
             pl "Looks… functional, at least."
         "It’ll work perfectly!":
             pl "It’ll work perfectly!"
-    
+
     s "Yep! But while you’re getting situated, you should read through the basic training manual."
 
     s "Just remember to choose the best response in each scenario and it'll probably turn out fine."
@@ -255,11 +266,286 @@ label start:
 
     s "Once we get there we’ll need to be careful and vigilant.  Keep your eyes open for any suspicious behavior, and remember, those accords must be signed.  No matter what."
 
+    hide sigrun happy
+
     label after_menu:
 
+    # DAY ONE
+    label day_one:
+    
+    scene hoteloutside
+    show sigrun happy
+    s "Here we are! This hotel will host the signing of the Unseelie Accords, and with it, some of the most powerful magical factions in the world."
 
+    menu pl1:
+        "Choose your response."
 
+        "Very exciting, but we should probably scout out the area.":
+            pl "Very exciting, but we should probably scout out the area."
+        "Interesting, we should get straight to looking for suspicious people.":
+            pl "Interesting, we should get straight to looking for suspicious people."
+    
+    s "Look at you, already a natural at this!"
 
+    s "Let’s get to surveying the area first, that way we’ll be ready when everyone arrives."
+
+    hide sigrun happy
+
+    label searchvenue:
+    scene hotellobby
+    menu searchhotel:
+        "Where would you like to investigate?"
+
+        "Pool" if not seen_pool:
+            scene hotelpool
+            pl "The pool area is clean and well-kept, aside from that, it seems pretty empty."
+            pl "Nobody’s around right now…"
+            menu swim:
+                "Go swimming for a little bit?"
+
+                "Yes":
+                    pl "*Splash* You jump into the pool and start doing a few laps."
+                    show dragonreal happy
+                    d "Hello there, I’d expected to have the pool to myself, but company is always a nice surprise."
+                    menu dragonresponse:
+                        "Choose your response."
+
+                        "Ah!  You scared the crap out of me… Where did you come from?":
+                            pl "Ah!  You scared the crap out of me… Where did you come from?"
+                            d "Hoho! I’m just here to unwind before the accords meetings begin."
+                        "Uhh… I’m just here to ensure the area is safe.":
+                            pl "Uhh… I’m just here to ensure the area is safe."
+                            d "Well then, I’m glad to see it works as intended."
+                    d "My name is Ferrovax, I am the eldest dragon in existence.  Who might you be?"
+                    pl "I’m [player_name].  I’m here to provide security for the proceedings."
+                    d "That’s good to hear, it fills me with confidence to know that there are reliable people here to ensure this event goes off without a hitch."
+                    pl "(He seems pretty chill, for a dragon anyways)"
+                    hide dragonreal happy
+                    $ met_d = True
+                "No":
+                    pl "Better not, I don’t want anyone to catch me goofing off when I should be working."
+            pl "…Better keep searching the venue."
+            $ seen_pool = True
+            jump searchvenue
+        "Conference Room" if not seen_conferenceroom:
+            scene hotelconfrenceroom
+            pl "There are a bunch of staff members prepping the conference room, seems a little hectic in here."
+            show vampirebad neutral
+            ev "Pardon me, you’re with Monoc Securities correct?"
+            menu evresponse:
+                "Choose your response."
+
+                "That’s right.":
+                    pl "That’s right."
+                    ev "Then, I trust the area is secure?"
+                    pl "Working on that now."
+                    ev "Perhaps you’d better get back to it then, it would be awful if anything were to happen to disrupt the proceedings."
+                    pl "…Right."
+                "Never heard of them.":
+                    pl "Never heard of them."
+                    ev "Then I must ask that you vacate the area, this event is invite only."
+                    ev "Staff?  Please escort this visitor outside."
+                    pl "I can’t believe I got kicked out of the conference room…"
+            hide vampirebad neutral
+            $ met_ev = True
+            pl "…Better keep searching the venue."
+            $ seen_conferenceroom = True
+            jump searchvenue
+        "Hotel Room" if not seen_hotelroom:
+            scene hotelroom
+            pl "Here’s my hotel room, it looks pretty standard."
+            pl "Nobody’s around right now…"
+            menu takenap:
+                "Take a nap?"
+                "Yes":
+                    pl "You jump onto the bed and immediately fall asleep…"
+                    pl "..."
+                    pl "..."
+                    pl "..."
+                    show sigrun annoyed
+                    s "WAKE UP!!"
+                    pl "…huh? What time is it?"
+                    s "Way too late, have you been sleeping all day?"
+                    pl "Only for…"
+                    pl "FIVE HOURS!!"
+                    s "Get a move on, we’re here on a job… sheesh."
+                    hide sigrun annoyed
+                "No":
+                    pl "I definitely don’t want to get caught sleeping on the job."
+            pl "…Better keep searching the venue."
+            $ seen_hotelroom = True
+            jump searchvenue
+        "Alleyway" if not seen_alleyway:
+            scene backalley
+            pl "Right outside the venue is a small alleyway.  It’s pretty dirty and gross, but that’s Chicago for you."
+            "???" "*whisper* *whisper*"
+            pl "Huh? I can hear voices from deeper in the alleyway."
+            pl "It could be dangerous."
+            menu checkoutalleyway:
+                "Check it out anyway?"
+                "Yes":
+                    pl "Hey, what’s going on back here!"
+                    show vampirebad surprised
+                    "???" "You fool!  You were whispering too loud!  Kill this pesky guard!"
+                    hide vampirebad surprised
+                    show vampirebad annoyed
+                    ev "HISSSSSSSSSS!!!"
+                    ev "(Stabbing noises)"
+                    return
+                "No":
+                    pl "Best not to risk it.  Maybe there’s a sneakier way to listen in on the conversation."
+            pl "…Better keep searching the venue."
+            $ seen_alleyway = True
+            jump searchvenue
+        "Air Vents" if not seen_airvents:
+            pl "Looks like the venue has extensive air vents.  It’d be a tight fit, but I bet I could fit through these."
+            menu crawlvents:
+                "Crawl through the vents?"
+                "Yes":
+                    scene vent
+                    pl "Squeezing through the vents is easier than I expected.  Really makes me feel like I’m in a spy movie."
+                    pl "(humming Mission: Impossible theme)"
+                    pl "Huh? Looks like the vents lead to the alleyway outside the hotel."
+                    "???" "*whisper* *whisper*"
+                    pl "Sounds like people are talking out there."
+                    menu listenin:
+                        "Listen in?"
+                        "Yes":
+                            scene backalley
+                            "???" "Did anyone see you?"
+                            show vampirebad sly
+                            ev "Of course not, but it had to be moved from the conference room."
+                            "???" "A minor setback, you’d better head back and guard it."
+                            "???" "We can’t let those accords be signed, no matter the cost!"
+                            ev "Whatever you say, as long as I get paid."
+                            pl "Sounds VERY suspicious!  I’d better report this to Sigrun."
+                            hide vampirebad sly
+                            $ vamp_vents = True
+                        "No":
+                            pl "Why bother, it’s probably nothing, and these vents are uncomfortable anyway."
+                "No":
+                    pl "Sounds like a hassle, besides, I’ve got more important things to be doing."
+            scene hotellobby
+            pl "…Better keep searching the venue"
+            $ seen_airvents = True
+            jump searchvenue
+        "Kitchen" if not seen_kitchen:
+            pl "The kitchen is very busy, filled with chefs and staff members prepping for the accords meeting."
+            "Chef" "You there, please help us!"
+            pl "Looks like a group of fairies are stealing all the spoons from the kitchen…"
+            menu stopfairies:
+                "Stop them?"
+                "Yes":
+                    pl "Alright, that’s enough of that!  Stop causing problems before the events even start!"
+                    show fairy happy
+                    fa "Oh?  Well hi there stranger, you look fun.  Wanna give me your name?"
+                    menu givename:
+                        "Give them your name?"
+                        "Yes":
+                            pl "Sure… My name’s [player_name]"
+                            hide fairy happy
+                            show fairy sly
+                            pl "Thanks a lot chump! Hehehe!"
+                            "???" "Wait a minute… who am I?"
+                            return
+                        "No":
+                            pl "Not a chance, I know how these things work."
+                            hide fairy happy
+                            show fairy angry
+                            fa "Ugh.  Nobody here is any fun at all."
+                            fa " Whatever, let’s ditch this place."
+                            hide fairy angry
+                            pl "Glad that didn’t escalate even further, but with that out of the way, the kitchen seems a lot more peaceful."
+                "No":
+                    pl "I’d rather not get involved with fairies, besides, the chefs look like they have it under control."
+            pl "…Better keep searching the venue."
+            $ seen_kitchen = True
+            jump searchvenue
+        "I'm done investigating for now.":
+            pl "I think I'm done investigating for now."
+            jump post_explore_venue
+
+    label post_explore_venue:
+    scene hotellobby
+    show sigrun happy
+    s "There you are.  All done searching the venue?  Find out anything interesting?"
+    menu sigrunreport:
+        "Choose your response."
+        "Nothing really…":
+            pl "Nothing really"
+            s "I’ll take that as a good sign then.  Hopefully means this job will be easy."
+        "Definitely some weird people here, might be a good idea to keep tabs on them.":
+            pl "Definitely some weird people here, might be a good idea to keep tabs on them."
+            s "Good to know, try to keep track of them and if they seem suspicious, let me know fast."
+        "Something’s definitely going to go down, I think we should keep our eyes on the Vampires." if vamp_vents == True:
+            pl "Something’s definitely going to go down, I think we should keep our eyes on the Vampires."
+            hide sigrun happy
+            show sigrun worried
+            s "Sounds serious.  Let’s get some backup and talk to them."
+            scene hotelconfrenceroom
+            pl "This is where the Vampires were earlier, but I don’t see any sign of them now."
+            hide sigrun worried
+            show sigrun neutral
+            s "We should split up and look around, and let me know if you see anything suspicious."
+            pl "Got it."
+            hide sigrun neutral
+            menu searchcr:
+                "Where would you like to investigate?"
+                "Seating" if not seen_seating:
+                    pl "Lots of comfortable seating for the representatives.  Nothing out of the ordinary though."
+                    $ seen_seating = True
+                    jump searchcr
+                "Main Podium" if not seen_podium:
+                    pl "Several pages of pre-prepared speeches and a current draft of the Unseelie Accords sits on the main podium."
+                    pl "I feel like this should be better guarded, but I guess that’s why I’m here."
+                    $ seen_podium = True
+                    jump searchcr
+                "Side Tables" if not seen_sidetables:
+                    pl "The side tables are full of handouts and information for the attendees."
+                    pl "Nothing suspicious about that."
+                    pl "Flipping the tablecloth up, I find a small amount of white-colored crystals."
+                    menu bombevidence:
+                        "Choose your Response"
+                        "That’s weird.":
+                            pl "That’s weird."
+                            pl "Hey Sigrun, come check this out!"
+                            show sigrun neutral
+                            s "That’s definitely out of place.  We should hold on to this and continue our search later.  It might come in handy."
+                            $ bomb_found = True
+                        "It’s probably nothing worth worrying about.":
+                            pl "It’s probably nothing worth worrying about."
+                            show sigrun neutral
+                            s "Find anything [player_name]?"
+                            pl "Nope, I guess it was a false lead…"
+                            s "Not to worry, it was definitely worth checking out, and there’ll be plenty of time to continue the search later."
+                    hide sigrun neutral
+                    $ seen_sidetables = True
+    show sigrun happy
+    s "In the meantime, it looks like the final arrivals are here."
+    scene hotellobby
+    s "Odin sir, glad to see you made it."
+    hide sigrun happy
+    show odin annoyed
+    show sigrun happy at left
+    show twins neutral at right
+    o "Ugh, been here 5 minutes and I’m already stressed out.  This is going to be a rough few days."
+    menu odinresponse:
+        "Choose your response."
+        "Anything I can help with sir?":
+            pl "Anything I can help with sir?"
+            o "You can make this as easy as possible by keeping this place safe.  I want no interruptions."
+            o "The sooner this is over with the better."
+        "Not to worry, we’ve got everything under control sir.":
+            pl "Not to worry, we’ve got everything under control sir."
+            o "Good, maybe this’ll go smoothly after all."
+    hide odin annoyed
+    hide twins neutral
+    hide sigrun happy
+    show sigrun happy
+    s "Good job today [player_name], you should get some rest in your hotel room, there will be plenty more to investigate tomorrow."
+    pl "You’re probably right, I’ll get an early start tomorrow to make sure everything’s on schedule."
+    hide sigrun happy
+    #end day one
 
     # DAY TWO
     label day_two:
@@ -298,7 +584,7 @@ label start:
     pl "I guess I'll just wait here..."
 
     show sigrun neutral
-    
+
     "After a few minutes, Sigrun joins me, but seems to already know not to knock."
 
     "We wait in silence."
@@ -306,12 +592,12 @@ label start:
     "..."
     show odin annoyed
     hide sigrun neutral
-    show sigrun neutral at left 
+    show sigrun neutral at left
     "It's about an hour later when he emerges, and we walk down to the lobby"
 
     scene hotellobby
     show odin annoyed
-    show sigrun neutral at left 
+    show sigrun neutral at left
     o "Sigrun, go grab breakfast."
 
     s "Yes sir."
@@ -319,8 +605,8 @@ label start:
     hide sigrun with fade
     "In the meantime I look around the room, taking in who's here already."
 
-    show dragon neutral at left
-    show fairies neutral at left
+    show dragonreal neutral at left
+    show fairy neutral at left
     show archive neutral at right
     "The dragon and the fairies seem to be deep in conversation, while The Archive is just standing, staring at the wall"
 
@@ -341,7 +627,7 @@ label start:
 
     s "And you're sure?"
 
-    pl "No- well, kind of? I did find this weird, white crystal stuff, and it doesn't act like salt. It disolves in water, but it's the wrong color when burned." 
+    pl "No- well, kind of? I did find this weird, white crystal stuff, and it doesn't act like salt. It disolves in water, but it's the wrong color when burned."
     pl "I don't know if it's dangerous but still."
 
     s "Better safe than sorry."
@@ -373,7 +659,7 @@ label start:
                     "Something's in the breakfast area? Better check it out."
                     jump breakfast_invest
                 #"The other hotel rooms, eavesdropping on the other guests":
-                
+
                 "In the hotel lobby, asking the employees what they've seen":
                     "I think I'll ask a few of the employees about anything suspicious."
 
@@ -400,15 +686,15 @@ label start:
                     "Concierge" "Pardon?"
 
                     pl "Oh of course-"
-                    
+
                     "I flash my new employee ID, Monoc Securities front and center."
-                    
+
                     pl "It's for a job, I just wanted to check with you."
 
                     "Concierge" "Oh! Of course. Though I can't say there was anything suspicious that I saw, you're free to look around."
 
                     "A bit disappointed with no leads, I take my time looking around the lobby, though nothing turns up."
-                    
+
                     "The last place to look is the breakfast nook, so once I've cleared that I'll report back to Odin."
                     jump breakfast_invest
 
@@ -425,9 +711,9 @@ label start:
                     s "Pardon? What do you mean-"
 
                     scene hotelroom
-                    show odin annoyed 
+                    show odin annoyed
                     show sigrun annoyed at left
-                    show besties annoyed at right
+                    show twins annoyed at right
                     "SLAM"
 
                     o "Employees who would rather spy on their own company than do as they're told aren't needed here."
@@ -440,13 +726,13 @@ label start:
             s "Good plan. We'll get breakfast with Hugin and Munin and wait to hear back"
 
             "I nod and take off back to Monoc Securities."
-            
+
             scene monocsecurities with fade
-            
+
             "Chem lab...chem lab...chem lab!"
-            
+
             pl "Hi! I need you guys to figure out what this is!"
-            
+
             "Chem Lab Girl" "Uhhh, sure. Give me a bit."
 
             "It's only a few minutes later that I get a call from one of the twins"
@@ -458,7 +744,7 @@ label start:
             hm "A bomb went off, we're sending you the new address."
 
             with Shake((0,0,0,0),0.5,dist=10)
-            
+
             pl "{fast}WHAT?!"
 
             hm "Odin, it's like the first time you've dealt with one of these or something."
@@ -475,7 +761,7 @@ label start:
 
             scene hotellobby with fade
             show odin annoyed
-            show besties annoyed at left
+            show twins annoyed at left
 
             o "About time you got back!"
 
@@ -519,16 +805,16 @@ label start:
             o "A wise choice kid. Let's go get some breakfast now that everyone's calmed down."
             scene hotellobby with fade
             show odin happy
-            show sigrun neutral at left 
+            show sigrun neutral at left
             o "Sigrun, go grab breakfast."
 
             s "Yes sir."
 
-            hide sigrun with fade
+            hide sigrun neutral with fade
             "In the meantime I look around the room, taking in who's here already."
 
-            show dragon at left
-            show fairies at left
+            show dragonreal neutral at left
+            show fairy neutral at left
             show archive neutral at right
             "The dragon and the fairies seem to be deep in conversation, while The Archive is just standing, staring at the wall"
 
@@ -556,7 +842,7 @@ label start:
 
     pl "Where are the others?"
 
-    show besties neutral at left
+    show twins neutral at left
     hm "We're here."
 
     "But as I look around I don't see Sigrun, just the hotel, entrance now crumbling."
@@ -569,20 +855,20 @@ label start:
 
     scene hotellobby
     show odin neutral
-    show besties neutral at left
+    show twins neutral at left
     pl "What would you like to do now?"
 
     o "You go do what you need to, I'll stay in my room with Hugin and Munin."
 
     "I almost protest, but think better of it."
     hide odin neutral
-    hide besties neutral at left
+    hide twins neutral at left
     jump meeting_post_bomb
 
     label breakfast_invest:
 
     "As the rest of the hotel begins to wake up, it's starting to become difficult to not look like I'm crazy poking around here."
-    
+
     "Nothing in the muffins, the coffee is burnt but not suspicious, and I'm about to give up when I see it just under the tablecloth..."
 
     "A little trace of white crystals, almost mistakable for tablesalt, just like the sample I'm carrying with me."
@@ -604,11 +890,11 @@ label start:
                     return
                 "Just to be safe, I'm going to dunk it in water":
                     "I don't know if it's actually dangerous but I mean, worst case I've waterlogged someone's suspicious toy"
-                    
+
                     show sigrun content
-                    
+
                     s "Hey! Find anything?"
-                    
+
                     pl "Just this weird toy, bomb, thing."
 
                     s "Oh shit"
@@ -626,7 +912,7 @@ label start:
                     s "Yeah, those are charges, good job Bomb Squad."
 
                     "Bomb Squad" "You think that'll stick?"
-                    
+
                     s "No, you'll be back to [pl] in a bit, we don't really do nicknames."
 
                     pl ":("
@@ -682,11 +968,11 @@ label start:
             hide mab worried
             jump meet_everyone
         "I'll introduce myself to the dragon" if not met_d:
-            show dragon worried
+            show dragonreal worried
             pl "Hi! I'm [pl], who are you?"
             d "I'm Ferrovax, I am older than mankind and just here for the food :)"
             $ met_d = True
-            hide dragon worried
+            hide dragonreal worried
             jump meet_everyone
         "I'll introduce myself to the fairies" if not met_fa:
             show fairy worried
@@ -756,11 +1042,11 @@ label start:
             hide mab neutral
             jump meet_everyone_no_bomb
         "I'll introduce myself to the dragon" if not met_d:
-            show dragon neutral
+            show dragonreal neutral
             pl "Hi! I'm [pl], who are you?"
             d "I'm Ferrovax, I am older than mankind and just here for the food :)"
             $ met_d = True
-            hide dragon neutral
+            hide dragonreal neutral
             jump meet_everyone_no_bomb
         "I'll introduce myself to the fairies" if not met_fa:
             show fairy neutral
@@ -791,7 +1077,7 @@ label start:
     menu look_rubble:
         "Look at the left pile, by the old kitchen nook":
             "As much as I look, I can't find anything more than ashes."
-            jump discuss_evidence  
+            jump discuss_evidence
         "Look at the right pile, by the check-in desk":
             "There's some scraps of papers, melted binders, mostly just singed by the heat."
             "Looking closer there's a list of everyone invited to sign the accords."
@@ -812,7 +1098,7 @@ label start:
             "But the search is unsuccessful."
 
             "The only suspicious thing is how simultaneously watery and pulpy the supposedly pulp-free orange juice is."
-            
+
             jump discuss_evidence
         "Look by the check-in desk":
             "There's some scraps of papers, but with the attendant, I can't get a good look around."
@@ -846,10 +1132,10 @@ label start:
     show odin annoyed
     show fairy angry at left
     show vampirechill surprised at right
-    
+
     "I don't arrive at a peaceful scene."
     with Shake((0,0,0,0),1.0,dist=10)
-    
+
     fa "{fast}I KNOW IT WAS YOU!"
 
     nv "{fast}No I didn't!"
@@ -951,7 +1237,7 @@ label start:
 
                     hide fairy angry at left
                     show fairy worried at left
-                    
+
                     fa "Fine"
 
                     "The fairy backing down seems to have settled the crowd. No longer a mob, people return to their respective cliques."
@@ -984,7 +1270,7 @@ label start:
             pl "Hmm. I think I might have been right. Otherwise that's a pretty rude thing to say."
 
             jump vamp_kick
-            
+
 
 
     label vamp_kick:
@@ -1048,7 +1334,7 @@ label start:
         o "No it's not. Your job is to protect me."
 
         hide vampirechill happy
-        show vampirechill worried 
+        show vampirechill worried
         nv "Oh I'm sorry, I didn't mean to get you in trouble, I'm going to head out."
         hide vampirechill worried
 
@@ -1063,14 +1349,74 @@ label start:
 
 
     label evening:
-    
+
     o "Doubt will serve you well in this industry kid. Let's head up now, better to not stick around."
-    
+
     scene hotelroom with fade
     "It was certainly an eventful day, and I've learned a lot. Tomorrow, the Accords are being signed."
     "Everyone's already sleeping, and as I prepare to join them I go over the evidence I've found."
     "I know who I suspect, but will I be right? Will I be able to protect not only Odin, but the entire magical world?"
 
     label day_three:
+        scene hotelconfrenceroom
+        show pope scheming
+        po "I'm glad everyone was able to make it on time! I have a gift for you all."
+        menu reveal_pope:
+            "I wonder what kind of gift a pope gives.":
+                po "You see, you all intend to make a big mistake here, so I am giving you the gift of salvation!"
+                po "Now, with that out of the way, I must be going."
+                hide pope
+                show odin annoyed
+                o "What the hell was that all about?"
+                hide odin
+                show mab neutral
+                m "I don't know, but we seem to be trapped. He jammed the door behind him."
+                jump game_over_explosion
+            "This can't be good!" if pope_score > 0:
+                if pope_score > 1:
+                    pl "Everyone, be on your guard, I think he was behind the bomb!"
+                    show pope annoyed
+                    po "What? I-"
+                    show vampirechill annoyed at right
+                    nv "I'll show you to frame us!"
+                    "SMACK" with Shake((0,0,0,0),1.0,dist=40)
+                    hide pope
+                    hide vampirechill
+                    "The door opens."
+                    show vampirebad neutral
+                    ev "Hey, what's the hold-up? Are we blowing this-"
+                    show vampirebad annoyed
+                    ev "Ugh, we didn't need him anyways, he can go with the rest of you!"
+                    show mab annoyed at left
+                    "SMACK" with Shake((0,0,0,0),1.0,dist=40)
+                    hide vampirebad
+                    hide mab
+                    show odin annoyed
+                    o "Well, hopefully, that's the last interruption before we can get this signed."
+                    hide odin
+                    show mab relieved
+                    m "Yes, thank you for preventing that!"
+                    hide mab
+                    show monocsecurities
+                    "After the accords were signed, we returned to Monoc Securities."
+                    "Everyone went about their days like normal, I guess this kind of excitement is normal around here."
+                elif pope_score > 0:
+                    pl "Sir, I think we should be careful, I don't trust him."
+                    hide pope
+                    show odin annoyed
+                    o "Don't be ridiculous, what has he done?"
+                    pl "I'm not sure, but-"
+                    hide odin
+                    show mab neutral
+                    m "He just left. I think you've offended him."
+                    jump game_over_explosion
+
+    return
+
+    label game_over_explosion:
+        "BOOM"
+        with Shake((0,0,0,0),1.0,dist=40)
+        ""
+        with Fade(5.0, 1.0, 0.5)
     return
     # This ends the game.
