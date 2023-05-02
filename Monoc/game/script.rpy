@@ -29,7 +29,7 @@ define d = Character("Ferrovax")
 define pl = Character("[player_name]")
 # Variables declared here
 # measure of how much evidence/suspicion the player has for the pope
-default pope_score = 2
+default pope_score = 0
 # default bomb evidence to false
 default bomb_found = False
 # do you have evidence to acquit the vampires?
@@ -1065,15 +1065,16 @@ label start:
 
     label day_three:
         scene hotelconfrenceroom
-        show pope happy
+        show pope scheming
         po "I'm glad everyone was able to make it on time, because I have a gift for you all."
         menu reveal_pope:
             "I wonder what kind of gift a pope gives":
                 po "You see, you all intend to make a big mistake here, so I am giving you the gift of salvation!"
                 po "Now, with that out of the way, I must be going"
-                hide po
+                hide pope
                 show odin annoyed
                 o "What the hell was that all about?"
+                hide odin
                 show mab neutral
                 m "I don't know, but we seem to be trapped. He jammed the door behind him"
                 jump game_over_explosion
@@ -1082,7 +1083,7 @@ label start:
                     pl "Everyone be on your gaurd, I think he was behind the bomb!"
                     show pope annoyed
                     po "What? I-"
-                    show vampirechill at right
+                    show vampirechill annoyed at right
                     nv "I'll show you to frame us!"
                     "SMACK" with Shake((0,0,0,0),1.0,dist=40)
                     hide pope
@@ -1096,10 +1097,10 @@ label start:
                     "SMACK" with Shake((0,0,0,0),1.0,dist=40)
                     hide vampirebad
                     hide mab
-                    show odin
+                    show odin annoyed
                     o "Well, hopefully that's the last iterruption before we can get this signed"
                     hide odin
-                    show mab
+                    show mab relieved
                     m "Yes, thank you for preventing that"
                     hide mab
                     show monocsecurities
@@ -1108,7 +1109,7 @@ label start:
                 elif pope_score > 0:
                     pl "Sir, I think we should be careful, I don't trust him."
                     hide pope
-                    show odin
+                    show odin annoyed
                     o "Don't be ridiculous, what has he done?"
                     pl "I'm not sure, but-"
                     hide odin
