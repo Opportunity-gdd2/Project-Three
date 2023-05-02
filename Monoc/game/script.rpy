@@ -64,7 +64,7 @@ label start:
 
     # Start Background Music As The Game Starts
     # Commented Out For Now. To Be Used Again Once Title and Game Music Are Different
-    
+
     #play music "audio/BGM_Generic.mp3" fadein 2.0
 
     # Show a background. This uses a placeholder by default, but you can
@@ -74,16 +74,16 @@ label start:
     scene monocsecurities with fade
 
     "I'm finally here"
-    
+
     "Ahead of me, Monoc Securities rises, a bastion against the sun."
-    
-    "Today, I'll be joining the ranks of one of the most prestigious security agencies in the world, 
+
+    "Today, I'll be joining the ranks of one of the most prestigious security agencies in the world,
     protecting the natural and supernatural. It all starts here."
 
     "*THUNK*"
 
     "???" "Sorry about that! The doors aren't automatic."
-    
+
     "Nice going, day one and you're already having to pick yourself off the ground."
 
     "???" "It's all good! I'm good."
@@ -93,7 +93,7 @@ label start:
     # directory.
 
     show sigrun happy
-    
+
     "???" "Well you must be our new hire, I'm Sigrun, I'll be your direct report, lets get started on your paperwork."
 
     scene niceoffice with fade
@@ -106,7 +106,7 @@ label start:
     $ player_name = player_name.strip() or "Barnaby"
     hide contract
     s "Perfect, you're officially a member of Monoc Securities, [player_name]."
-    
+
     menu intro:
         "Choose your response."
 
@@ -229,7 +229,7 @@ label start:
             hide odin neutral
             show odin happy
             o "This will be the perfect opportunity for you to sink or swim, and I’m sure you won’t let us down."
-    
+
     hide odin happy
     show sigrun happy
 
@@ -249,7 +249,7 @@ label start:
             pl "Looks… functional, at least."
         "It’ll work perfectly!":
             pl "It’ll work perfectly!"
-    
+
     s "Yep! But while you’re getting situated, you should read through the basic training manual."
 
     s "Just remember to choose the best response in each scenario and it'll probably turn out fine."
@@ -578,7 +578,7 @@ label start:
     pl "I guess I'll just wait here..."
 
     show sigrun neutral
-    
+
     "After a few minutes, Sigrun joins me, but seems to already know not to knock."
 
     "We wait in silence."
@@ -586,12 +586,12 @@ label start:
     "..."
     show odin annoyed
     hide sigrun neutral
-    show sigrun neutral at left 
+    show sigrun neutral at left
     "It's about an hour later when he emerges, and we walk down to the lobby"
 
     scene hotellobby
     show odin annoyed
-    show sigrun neutral at left 
+    show sigrun neutral at left
     o "Sigrun, go grab breakfast."
 
     s "Yes sir."
@@ -621,7 +621,7 @@ label start:
 
     s "And you're sure?"
 
-    pl "No- well, kind of? I did find this weird, white crystal stuff, and it doesn't act like salt. It disolves in water, but it's the wrong color when burned." 
+    pl "No- well, kind of? I did find this weird, white crystal stuff, and it doesn't act like salt. It disolves in water, but it's the wrong color when burned."
     pl "I don't know if it's dangerous but still."
 
     s "Better safe than sorry."
@@ -653,7 +653,7 @@ label start:
                     "Something's in the breakfast area? Better check it out."
                     jump breakfast_invest
                 #"The other hotel rooms, eavesdropping on the other guests":
-                
+
                 "In the hotel lobby, asking the employees what they've seen":
                     "I think I'll ask a few of the employees about anything suspicious."
 
@@ -680,15 +680,15 @@ label start:
                     "Concierge" "Pardon?"
 
                     pl "Oh of course-"
-                    
+
                     "I flash my new employee ID, Monoc Securities front and center."
-                    
+
                     pl "It's for a job, I just wanted to check with you."
 
                     "Concierge" "Oh! Of course. Though I can't say there was anything suspicious that I saw, you're free to look around."
 
                     "A bit disappointed with no leads, I take my time looking around the lobby, though nothing turns up."
-                    
+
                     "The last place to look is the breakfast nook, so once I've cleared that I'll report back to Odin."
                     jump breakfast_invest
 
@@ -705,7 +705,7 @@ label start:
                     s "Pardon? What do you mean-"
 
                     scene hotelroom
-                    show odin annoyed 
+                    show odin annoyed
                     show sigrun annoyed at left
                     show twins annoyed at right
                     "SLAM"
@@ -720,13 +720,13 @@ label start:
             s "Good plan. We'll get breakfast with Hugin and Munin and wait to hear back"
 
             "I nod and take off back to Monoc Securities."
-            
+
             scene monocsecurities with fade
-            
+
             "Chem lab...chem lab...chem lab!"
-            
+
             pl "Hi! I need you guys to figure out what this is!"
-            
+
             "Chem Lab Girl" "Uhhh, sure. Give me a bit."
 
             "It's only a few minutes later that I get a call from one of the twins"
@@ -738,7 +738,7 @@ label start:
             hm "A bomb went off, we're sending you the new address."
 
             with Shake((0,0,0,0),0.5,dist=10)
-            
+
             pl "{fast}WHAT?!"
 
             hm "Odin, it's like the first time you've dealt with one of these or something."
@@ -799,7 +799,7 @@ label start:
             o "A wise choice kid. Let's go get some breakfast now that everyone's calmed down."
             scene hotellobby with fade
             show odin happy
-            show sigrun neutral at left 
+            show sigrun neutral at left
             o "Sigrun, go grab breakfast."
 
             s "Yes sir."
@@ -860,7 +860,7 @@ label start:
     label breakfast_invest:
 
     "As the rest of the hotel begins to wake up, it's starting to become difficult to not look like I'm crazy poking around here."
-    
+
     "Nothing in the muffins, the coffee is burnt but not suspicious, and I'm about to give up when I see it just under the tablecloth..."
 
     "A little trace of white crystals, almost mistakable for tablesalt, just like the sample I'm carrying with me."
@@ -882,11 +882,11 @@ label start:
                     return
                 "Just to be safe, I'm going to dunk it in water":
                     "I don't know if it's actually dangerous but I mean, worst case I've waterlogged someone's suspicious toy"
-                    
+
                     show sigrun content
-                    
+
                     s "Hey! Find anything?"
-                    
+
                     pl "Just this weird toy, bomb, thing."
 
                     s "Oh shit"
@@ -904,7 +904,7 @@ label start:
                     s "Yeah, those are charges, good job Bomb Squad."
 
                     "Bomb Squad" "You think that'll stick?"
-                    
+
                     s "No, you'll be back to [pl] in a bit, we don't really do nicknames."
 
                     pl ":("
@@ -1069,7 +1069,7 @@ label start:
     menu look_rubble:
         "Look at the left pile, by the old kitchen nook":
             "As much as I look, I can't find anything more than ashes."
-            jump discuss_evidence  
+            jump discuss_evidence
         "Look at the right pile, by the check-in desk":
             "There's some scraps of papers, melted binders, mostly just singed by the heat."
             "Looking closer there's a list of everyone invited to sign the accords."
@@ -1090,7 +1090,7 @@ label start:
             "But the search is unsuccessful."
 
             "The only suspicious thing is how simultaneously watery and pulpy the supposedly pulp-free orange juice is."
-            
+
             jump discuss_evidence
         "Look by the check-in desk":
             "There's some scraps of papers, but with the attendant, I can't get a good look around."
@@ -1124,10 +1124,10 @@ label start:
     show odin annoyed
     show fairy angry at left
     show vampirechill surprised at right
-    
+
     "I don't arrive at a peaceful scene."
     with Shake((0,0,0,0),1.0,dist=10)
-    
+
     fa "{fast}I KNOW IT WAS YOU!"
 
     nv "{fast}No I didn't!"
@@ -1229,7 +1229,7 @@ label start:
 
                     hide fairy angry at left
                     show fairy worried at left
-                    
+
                     fa "Fine"
 
                     "The fairy backing down seems to have settled the crowd. No longer a mob, people return to their respective cliques."
@@ -1262,7 +1262,7 @@ label start:
             pl "Hmm. I think I might have been right. Otherwise that's a pretty rude thing to say."
 
             jump vamp_kick
-            
+
 
 
     label vamp_kick:
@@ -1326,7 +1326,7 @@ label start:
         o "No it's not. Your job is to protect me."
 
         hide vampirechill happy
-        show vampirechill worried 
+        show vampirechill worried
         nv "Oh I'm sorry, I didn't mean to get you in trouble, I'm going to head out."
         hide vampirechill worried
 
@@ -1341,14 +1341,74 @@ label start:
 
 
     label evening:
-    
+
     o "Doubt will serve you well in this industry kid. Let's head up now, better to not stick around."
-    
+
     scene hotelroom with fade
     "It was certainly an eventful day, and I've learned a lot. Tomorrow, the Accords are being signed."
     "Everyone's already sleeping, and as I prepare to join them I go over the evidence I've found."
     "I know who I suspect, but will I be right? Will I be able to protect not only Odin, but the entire magical world?"
 
     label day_three:
+        scene hotelconfrenceroom
+        show pope scheming
+        po "I'm glad everyone was able to make it on time! I have a gift for you all."
+        menu reveal_pope:
+            "I wonder what kind of gift a pope gives.":
+                po "You see, you all intend to make a big mistake here, so I am giving you the gift of salvation!"
+                po "Now, with that out of the way, I must be going."
+                hide pope
+                show odin annoyed
+                o "What the hell was that all about?"
+                hide odin
+                show mab neutral
+                m "I don't know, but we seem to be trapped. He jammed the door behind him."
+                jump game_over_explosion
+            "This can't be good!" if pope_score > 0:
+                if pope_score > 1:
+                    pl "Everyone, be on your guard, I think he was behind the bomb!"
+                    show pope annoyed
+                    po "What? I-"
+                    show vampirechill annoyed at right
+                    nv "I'll show you to frame us!"
+                    "SMACK" with Shake((0,0,0,0),1.0,dist=40)
+                    hide pope
+                    hide vampirechill
+                    "The door opens."
+                    show vampirebad neutral
+                    ev "Hey, what's the hold-up? Are we blowing this-"
+                    show vampirebad annoyed
+                    ev "Ugh, we didn't need him anyways, he can go with the rest of you!"
+                    show mab annoyed at left
+                    "SMACK" with Shake((0,0,0,0),1.0,dist=40)
+                    hide vampirebad
+                    hide mab
+                    show odin annoyed
+                    o "Well, hopefully, that's the last interruption before we can get this signed."
+                    hide odin
+                    show mab relieved
+                    m "Yes, thank you for preventing that!"
+                    hide mab
+                    show monocsecurities
+                    "After the accords were signed, we returned to Monoc Securities."
+                    "Everyone went about their days like normal, I guess this kind of excitement is normal around here."
+                elif pope_score > 0:
+                    pl "Sir, I think we should be careful, I don't trust him."
+                    hide pope
+                    show odin annoyed
+                    o "Don't be ridiculous, what has he done?"
+                    pl "I'm not sure, but-"
+                    hide odin
+                    show mab neutral
+                    m "He just left. I think you've offended him."
+                    jump game_over_explosion
+
+    return
+
+    label game_over_explosion:
+        "BOOM"
+        with Shake((0,0,0,0),1.0,dist=40)
+        ""
+        with Fade(5.0, 1.0, 0.5)
     return
     # This ends the game.
