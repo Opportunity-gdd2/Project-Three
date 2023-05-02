@@ -1070,13 +1070,13 @@ label start:
         menu reveal_pope:
             "I wonder what kind of gift a pope gives":
                 po "You see, you all intend to make a big mistake here, so I am giving you the gift of salvation!"
-                po "Now, with that out of the way, I must be going"
+                po "Now, with that out of the way, I must be going."
                 hide pope
                 show odin annoyed
                 o "What the hell was that all about?"
                 hide odin
                 show mab neutral
-                m "I don't know, but we seem to be trapped. He jammed the door behind him"
+                m "I don't know, but we seem to be trapped. He jammed the door behind him."
                 jump game_over_explosion
             "This can't be good!" if pope_score > 0:
                 if pope_score > 1:
@@ -1092,20 +1092,20 @@ label start:
                     show vampirebad neutral
                     ev "Hey, what's the hold up? Are we blowing this-"
                     show vampirebad annoyed
-                    ev "Ugh, we didn't need him anyways, he can go with the rest of you"
+                    ev "Ugh, we didn't need him anyways, he can go with the rest of you!"
                     show mab annoyed at left
                     "SMACK" with Shake((0,0,0,0),1.0,dist=40)
                     hide vampirebad
                     hide mab
                     show odin annoyed
-                    o "Well, hopefully that's the last iterruption before we can get this signed"
+                    o "Well, hopefully that's the last iterruption before we can get this signed."
                     hide odin
                     show mab relieved
-                    m "Yes, thank you for preventing that"
+                    m "Yes, thank you for preventing that!"
                     hide mab
                     show monocsecurities
                     "After the accords were signed, we returned to Monoc Securities."
-                    "Everyone went about their days like normal, I guess this kind of excitement is normal around here"
+                    "Everyone went about their days like normal, I guess this kind of excitement is normal around here."
                 elif pope_score > 0:
                     pl "Sir, I think we should be careful, I don't trust him."
                     hide pope
