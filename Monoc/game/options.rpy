@@ -65,7 +65,7 @@ define config.has_voice = True
 ## uncomment a line below and use it to set a sample sound to play.
 
 # define config.sample_sound = "sample-sound.ogg"
-# define config.sample_voice = "sample-voice.ogg"
+define config.sample_voice = "audio/Dialogue.mp3"
 
 
 ## Uncomment the following line to set an audio file that will be played while
@@ -73,6 +73,13 @@ define config.has_voice = True
 ## game, until it is stopped or another file is played.
 
 define config.main_menu_music = "audio/BGM_Generic.mp3"
+
+
+## This Automatically Sets It So The Typing Noise Is Played For All Dialogue
+## This Currently Encounters An Issue Where The Audio Can Not Be Cut Off So It
+## Continues Playing Even After The Dialogue Is Fully Displayed
+
+## define config.auto_voice = "audio/Dialogue.mp3"
 
 
 ## Transitions #################################################################

@@ -1,6 +1,7 @@
 ﻿# The script of the game goes in this file.
 
 $ import shake
+
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
@@ -80,8 +81,9 @@ label start:
     "Today, I'll be joining the ranks of one of the most prestigious security agencies in the world,
     protecting the natural and supernatural. It all starts here."
 
+    play sound "audio/Thud.mp3"
     "*THUNK*"
-
+   
     "???" "Sorry about that! The doors aren't automatic."
 
     "Nice going, day one and you're already having to pick yourself off the ground."
@@ -561,6 +563,11 @@ label start:
     pl "Well...up and at'em I guess."
     "I take my time getting up and into uniform before heading out the door, and go to meet Odin and crew at his room."
 
+    play sound "audio/Knock1.mp3"
+
+    # Alternate Knock Sound
+    # play sound "audio/Knock2.mp3"
+
     "*KNOCK KNOCK*"
 
     "???" "Fuck off!"
@@ -573,6 +580,8 @@ label start:
 
     hide odin annoyed
 
+    # This Sound Can Be Replaced By A Better Door Slam Sound Later
+    play sound "audio/Thud.mp3"
     "He slams the door in my face."
 
     pl "I guess I'll just wait here..."
@@ -708,6 +717,8 @@ label start:
                     show odin annoyed
                     show sigrun annoyed at left
                     show twins annoyed at right
+                    # Another Slam Sound Which Can Be Replaced Later
+                    play sound "audio/Thud.mp3"
                     "SLAM"
 
                     o "Employees who would rather spy on their own company than do as they're told aren't needed here."
@@ -822,8 +833,9 @@ label start:
 
     $ sigrun_dead = True
     show odin eyesclosed
-    "BOOM"
+    play sound "audio/Explosion.mp3" fadeout 3.0
     with Shake((0,0,0,0),1.0,dist=40)
+    "BOOM"
     show odin annoyed
     "{fast}There's screaming, and everyone is running. Some reflex takes over, and before I know it, I'm outside and Odin is behind me, safe."
 
@@ -841,6 +853,7 @@ label start:
     "But as I look around I don't see Sigrun, just the hotel, entrance now crumbling."
 
     "Someone else has called an ambulance, and a firetruck comes to a hard stop."
+    play sound "audio/Siren.mp3"
     "..."
     "..."
     "We wait, for what seems like hours, but when we move to a different hotel, Sigrun isn't with us."
@@ -874,8 +887,10 @@ label start:
                     show sigrun content
                     s "Hey! Find anything?"
                     show sigrun worried
-                    "BOOM"
+                    play sound "audio/Explosion.mp3" fadeout 3.0
                     with Shake((0,0,0,0),1.0,dist=40)
+                    "BOOM"
+
                     "I'm not even around long enough to understand what happened, but Sigrun's worried face tells me enough."
                     "Probably shouldn't have treated that so lightly"
                     with Fade(5.0, 1.0, 0.5)
@@ -916,10 +931,12 @@ label start:
             show sigrun content
             s "Hey! Find anything?"
             show sigrun worried
-            "BOOM"
+            play sound "audio/Explosion.mp3" fadeout 5.0
             with Shake((0,0,0,0),1.0,dist=40)
+            "BOOM"
             "I'm not even around long enough to understand what happened, but Sigrun's worried face tells me enough."
             "Probably shouldn't have ignored that..."
+            stop sound fadeout 1.5
             with Fade(5.0, 1.0, 0.5)
             return
 
@@ -989,9 +1006,11 @@ label start:
     # show whatever people we want
     pl "Okay so there was a bomb in the breakfast area."
 
+    play sound "audio/Chatter.mp3" fadein 1.0 volume 0.5
     "This sets off a chorus of whispers, and more than a few dirty looks."
 
     s "Have some tact!"
+    stop sound fadeout 1.5
 
     "Sigrun re-explains what happened, much more professionally than I did. When she finishes she turns to me."
 
@@ -1406,9 +1425,11 @@ label start:
     return
 
     label game_over_explosion:
-        "BOOM"
+        play sound "audio/Explosion.mp3" fadeout 3.0
         with Shake((0,0,0,0),1.0,dist=40)
+        "BOOM"
         ""
+        stop sound
         with Fade(5.0, 1.0, 0.5)
     return
     # This ends the game.
